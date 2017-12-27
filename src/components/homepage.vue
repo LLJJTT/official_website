@@ -45,6 +45,7 @@ export default {
 		top: 0;
 		z-index:1;
 		user-select: none;
+		color: #333;
 	}
 	.banner{
 		width: 100%;
