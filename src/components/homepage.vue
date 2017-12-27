@@ -7,7 +7,7 @@
   		</div>
   		<div class="intro">
   			<p class="p0">一站式软件开发服务</p>
-  			<p class="p1">全透明项目管控，100%高质量交付，汇集全球研发资源<br></p>
+  			<p class="p1">全透明项目管控，100%高质量交付，汇集全球研发资源，我们都是领导者<br></p>
   		</div>
 		<!-- 测试axios -->
   		<!-- <button v-on:click="httpRequest">click</button> -->
