@@ -9,13 +9,19 @@
   			<p class="p0">一站式软件开发服务</p>
   			<p class="p1">全透明项目管控，100%高质量交付，汇集全球研发资源，我们都是领导者<br></p>
   		</div>
+  		<trust></trust>
 		<!-- 测试axios -->
   		<!-- <button v-on:click="httpRequest">click</button> -->
   	</div>
 </template>
 <script>
+import trust from './trust.vue'
 export default {
 	name:'homepage',
+	components: {
+		trust,
+		// 'v-trust': trust
+	},
 	mounted:function(){
 		const aDiv = document.querySelectorAll('.banner div');
 		let index = 0;
@@ -33,7 +39,6 @@ export default {
 			aDiv[index].style.opacity=1;
 			aDiv[index].className += ' focus';
 		},4000);
-
 	}
 }
 </script>
@@ -46,6 +51,7 @@ export default {
 		z-index:1;
 		user-select: none;
 		color: #333;
+		height: 600px;
 	}
 	.banner{
 		width: 100%;
@@ -54,7 +60,7 @@ export default {
 		overflow: hidden;
 		/*padding-bottom: 5px;*/
 		background: #555367;
-  		border-bottom: 10px solid #ffbb1f;
+  		border-bottom: 3px solid #ffbb1f;
 
 	}
 	.item{
