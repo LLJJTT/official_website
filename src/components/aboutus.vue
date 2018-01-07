@@ -1,6 +1,6 @@
 <template>
 	<div id="aboutus">
-		this is aboutus
+		this is about me
 	</div>
 </template>
 

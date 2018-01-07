@@ -4,6 +4,7 @@ import HomePage from '@/components/homepage'
 import AboutUs from '@/components/aboutus'
 import ContactUs from '@/components/contactus'
 import YingYong from '@/components/yingyong'
+import Snack from '@/components/snack'
 
 // @相当于项目的根路径
 Vue.use(Router)
@@ -37,6 +38,11 @@ export default new Router({
       path: '/yingyong',//就是加载的路径名字
       name: 'yingyong',//随便起的
       component: YingYong//跟import名字一样 
+    },
+    {
+      path:'/snack',
+      name:'snack',
+      component:Snack
     }
 
   ]

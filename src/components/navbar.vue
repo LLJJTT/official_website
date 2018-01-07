@@ -6,20 +6,20 @@
   			</h1>
 	  		<div class="fl_r tab">
 	  			<ul>
-	  				<li>
-	  					<router-link to="/yingyong">云应用</router-link>
+	  				<li @click = "goProduct">
+	  					<a href="javascript:void(0)">作品</a>
 	  			    </li>
 	  				<li>
-	  					<router-link to="/aboutus">关于我们</router-link>
+	  					<router-link to="/aboutus">关于我</router-link>
 	  				</li>
 	  				<li>
-	  					<router-link to="/contactus">联系我们</router-link>
+	  					<router-link to="/contactus">技能</router-link>
 	  				</li>
 	  				<li>
 	  					<router-link to="/homepage">首页</router-link>
 	  				</li>
-	  				<li>
-	  					<a href="javascript:void(0)">010-6666-8888</a>
+	  				<li @click ="goContact">
+	  					<a href="javascript:void(0)">联系我</a>
 	  				</li>
 	  			</ul>
 	  		</div>
@@ -29,6 +29,19 @@
 <script>
 export default {
    name:'navbar',
+   data:function(){
+   		return{
+
+   		}
+   },
+   methods:{
+   		goContact:function(){
+			  window.scrollTo(1000,9000);
+   		},
+   		goProduct:function(){
+   			window.scrollTo(500,700);
+   		}
+   }
 
 }
 </script>
@@ -83,7 +96,28 @@ export default {
 				.router-link-active{
 					color: #DD812E;
 				}
+				li:last-child{
+
+				}
+			}
+		}
+    }
+    @media(max-width:410px){
+		#navbar{
+			.fl_l{
+				float:none;
+				margin-left:0;
+			}
+			.tab{
+				margin-left:0!important;
+				ul li{
+					margin-left:0;
+				}
 			}
 		}
     }
 </style>
+
+
+
+

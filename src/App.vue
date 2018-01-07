@@ -2,6 +2,7 @@
   <div id="app">
     <Navbar></Navbar>
     <router-view></router-view>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -10,10 +11,12 @@
 // import './css/common.css'
 import HomePage from './components/homepage'
 import Navbar from './components/navbar'
+import Footer from './components/footer'
+// import Snack from './components/snack'
 export default {
   name: 'app',
   components:{
-    HomePage,Navbar
+    HomePage,Navbar,Footer
   }
   
 }

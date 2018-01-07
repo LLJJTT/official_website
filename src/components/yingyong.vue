@@ -1,6 +1,6 @@
 <template>
 	<div id="yingyong">
-		this is yingyong
+		this is product
 	</div>
 </template>
 
@@ -15,6 +15,6 @@
 
 <style scoped>
 	#yingyong{
-		background: #000;
+		background:red;
 	}
 </style>

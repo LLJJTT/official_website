@@ -1,6 +1,6 @@
 <template>
 	<div id="contactus">
-		this is contactus
+		this is skill
 	</div>
 </template>
 
@@ -15,6 +15,6 @@
 
 <style scoped>
 	#contactus{
-		background: #000;
+		background:blue;
 	}
 </style>
