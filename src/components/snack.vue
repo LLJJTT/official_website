@@ -1,12 +1,18 @@
 <template>
 	<div id="snack">
+		<div id="info">
+			<h1>游戏介绍</h1>
+			<p>上W、下S、左A、右S</p>
+		</div>
 		<div id="snack_div">
 			<table>
-				<tr v-for="(col,y) in cols"><td v-for="(row,x) in rows" :class="snackbody(x,y)||showfood(x,y)?'active':''"></td></tr>
-				</table>
-
-				<el-button :disabled="dis" class="el_btn_start" @click="start()" type="primary">开始</el-button>
-				<el-button  class="el_btn_end" @click="end()" type="danger">结束</el-button>
+				<tr v-for="(col,y) in cols">
+					<td v-for="(row,x) in rows" :class="snackbody(x,y)||showfood(x,y)?'active':''">
+					</td>
+				</tr>
+			</table>
+			<el-button :disabled="dis" class="el_btn_start" @click="start()" type="primary">开始</el-button>
+			<el-button :disabled="dis_end"  class="el_btn_end" @click="end()" type="danger">结束</el-button>
 		</div>
 	</div>
 </template>
@@ -21,7 +27,8 @@
 					position:[[0,0],[1,0],[2,0],[3,0]],//蛇的初始位置
 					direction:1,//方向
 					food:[],//食物的位置
-					dis:false
+					dis:false,
+					dis_end:true,
 				}
 			},
 			mounted(){
@@ -66,8 +73,9 @@
 					}
 				},	
 				start(){//开始按钮
-					this.dis =true;
-					this.timer=setInterval(()=>this.autorun(),300)
+					this.dis =true
+					this.dis_end = false
+					this.timer=setInterval(()=>this.autorun(),250)
 				},	
 				end(){
 					this.$message({
@@ -79,6 +87,7 @@
 					this.creatfood()
 					this.direction=1
 					this.dis =false
+					this.dis_end = true
 				},		
 				change(dir){//改变方向
 					if(Math.abs(dir)===Math.abs(this.direction)){//如果方向相同或者相反，不做任何操作
@@ -104,6 +113,7 @@
 						this.creatfood()
 						this.direction=1
 						this.dis =false
+						console.log(headX+headY)
 					}
 					else{//如果蛇头下一个位置是符合规则的						
 						this.position.push([headX,headY])//将下一个位置添加进数组，头部长一节
@@ -147,6 +157,17 @@
 			padding: 12px 40px;
 			margin-top:20px;
 			margin-left: 100px;
+		}
+		#info{
+			user-select:none;
+			color:#8f959a;
+			padding-bottom:20px;
+			h1{
+				display:inline-block;
+				font-size:20px;
+				margin-bottom:20px;
+				border-bottom:1px solid #eee;
+			}
 		}
 </style>
 
