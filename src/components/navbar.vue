@@ -2,7 +2,7 @@
 	<div id="navbar">
 				<!-- logo -->
   			<h1 class="fl_l bl">
-  					<img title="logo" class="logo " src="../assets/alibaba.png" alt="logo">
+  					<img title="logo" class="logo " src="../assets/logo.png" alt="logo">
   			</h1>
 	  		<div class="fl_r tab">
 	  			<ul>
@@ -59,8 +59,8 @@ export default {
 			margin-left: 50px;
 			position: relative;
 			.logo{
-				width: 150px;
-				height: 60px;
+				width: 80px;
+				height: 80px;
 				vertical-align: middle;
 				margin-top: 10px;
 				cursor: pointer;

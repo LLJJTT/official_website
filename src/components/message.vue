@@ -33,13 +33,13 @@
 						<span>姓名：</span><input v-on:keyup="textChange0" v-model="nameVal" class="name" type="text"><i class="snow0">*</i>
 					</li>
 					<li>
-						<span>手机号：</span><input v-on:keyup="textChange1" v-model="numVal" type="num"><i class="snow1">*</i>
+						<span class="phone_n">手机号：</span><input class="num" v-on:keyup="textChange1" v-model="numVal" type="number"><i class="snow1">*</i>
 					</li>
 					<div style="clear:both"></div>
 				</ul>
 				<ul class="r_ul2">
 					<li>
-						<span>内容：</span><textarea v-on:keyup="textChange2" v-model="textVal" id="inp_text"></textarea><i class="snow2">*</i>
+						<span class="content">内容：</span><textarea v-on:keyup="textChange2" v-model="textVal" id="inp_text"></textarea><i class="snow2">*</i>
 						<div style="clear:both"></div>
 					</li>
 					<li>
@@ -102,7 +102,10 @@
 			},
 			submitMessage:function(){
 				if(this.nameVal!=''&&this.numVal!=''&&this.textVal!=''){
-					alert('您留言成功了，我会尽快联系你！')
+					this.$message({
+						message:'您留言成功了，我会尽快联系你！',
+						type:'warning'
+					})
 				}
 			}
 		}
@@ -111,7 +114,6 @@
 
 <style scoped lang="scss">
 	#message{
-		height:420px;
 		background-image: url('../assets/liuyan.jpg');
 		background-repeat:no-repeat;
 		background-size:cover;
@@ -246,4 +248,171 @@
 			}
 		}
 	}
+	@media(max-width:900px){
+		#message{
+			p{
+				font-size:12px;
+				margin-left: 5px;
+				padding-top:200px;
+			}
+			.m_left{
+				float:none;
+				width:100%;
+				.wrapper{
+					width:100%;
+					text-align:center;
+					ul{
+						float:none;
+					}
+					.ul_intro{
+						padding:20px 0 50px 0;
+						margin-left:100px;
+						li:first-child{
+							font-size:12px;
+						}
+						li{
+							line-height:30px;
+							text-align:left;
+							color:#b8cbe2;
+							font-size:10px;
+							font-weight:bold;
+						}
+					}
+					.ul_img img{
+						display:none;
+					}
+				}
+			}
+			.m_right{
+				float:none;
+				width:100%;
+				padding-top:0;
+				.wrapper1{
+					padding:0 0 100px 0;
+					.r_ul1{
+						li{
+							float:none;
+							display:inline-block;
+							width:100%;
+							font-size:12px;
+							span{
+								position:absolute;
+								right:280px;
+								line-height:40px;
+							}
+							.phone_n{
+								position:absolute;
+								margin-top:20px;
+							}
+							input{
+								display:inline-block;
+								text-indent:10px;
+								font-weight:bold;
+								box-shadow:none;
+								border:none;
+								background: #aaa;
+								color:#fff;
+								font-size:10px;
+								height:30px;
+								text-align:center;
+								border-radius:2px;
+							}
+						}
+						li:first-child{
+							margin:0;
+							float:none;
+							i{
+								color:red;
+								position:absolute;
+								right:100px;
+								line-height:40px;
+							}
+								
+						}
+						.snow1{
+							color:red;
+							position:absolute;
+							right:100px;
+							margin-top:20px;
+							line-height:40px;
+
+						}
+						.num{
+							position:absolute;
+							right:140px;
+							margin-top:20px;
+						}
+						.name{
+							position:absolute;
+							right:140px;
+						}
+					}
+					.r_ul2{
+						li{
+							font-size:12px;
+						}
+						.content{
+							position:absolute;
+							right:280px;
+						}
+						li:first-child{
+							margin-top: 60px;
+							#inp_text{
+								width:145px;
+								height:30px;
+								background: #bbbbbb;
+								box-shadow:none;
+								text-indent:10px;
+								font-weight:bold;
+								color:#fff;
+								font-size:20px;
+								border-radius:2px;
+								overflow:hidden;
+								position:absolute;
+								right:136px;
+							}
+							span:first-child{
+								padding-left:50px;
+							}
+							span,textarea{
+								float:left;
+							}
+							.snow2{ 
+								position:absolute;
+								right:100px;
+								color:red;
+								line-height:40px;
+								float:none;
+
+							}
+						}
+						li:last-child{
+							display:block;
+							width:90%;
+							margin:0 auto;
+							margin-top: 60px;
+							float:left;
+							padding-left:0;
+							button{
+								padding:12px 30px;
+								box-shadow:none;
+								border:none;
+								color:#fff;
+								background: #aaa;
+								font-weight:bold;
+								border-radius:2px;
+								color:#fff;
+							}
+						}
+					}
+
+				}
+			}
+		}
+	}
 </style>
+
+
+
+
+

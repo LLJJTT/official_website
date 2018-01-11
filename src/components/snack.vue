@@ -14,6 +14,12 @@
 			<el-button :disabled="dis" class="el_btn_start" @click="start()" type="primary">开始</el-button>
 			<el-button :disabled="dis_end"  class="el_btn_end" @click="end()" type="danger">结束</el-button>
 		</div>
+		<div class="score">
+			<ul>
+				<li>分数</li>
+				<li>{{score}}</li>
+			</ul>
+		</div>
 	</div>
 </template>
 
@@ -29,6 +35,7 @@
 					food:[],//食物的位置
 					dis:false,
 					dis_end:true,
+					score:-1,
 				}
 			},
 			mounted(){
@@ -58,6 +65,7 @@
 				creatfood(){//创造食物
 					this.food[0]=Math.floor(Math.random()*40)
 					this.food[1]=Math.floor(Math.random()*20)
+					this.score++
 				},
 				showfood(x,y){//显示食物
 					if(this.food[0]===x&&this.food[1]===y){
@@ -88,6 +96,7 @@
 					this.direction=1
 					this.dis =false
 					this.dis_end = true
+					this.score = 0
 				},		
 				change(dir){//改变方向
 					if(Math.abs(dir)===Math.abs(this.direction)){//如果方向相同或者相反，不做任何操作
@@ -107,18 +116,21 @@
 							direction>0?headY++:headY--//如果方向是在上下跑动，Y坐标做对应处理
 					}//此时蛇头的下一个坐标位置就是[headX,headY]，接下来就可以判断是否结束游戏，如果结束了，蛇头就没必要添加了
 					if(headX<0||headX>39||headY<0||headY>19){//当蛇头下一个位置出了边界或者这个位置是符合身体函数（即蛇头撞上了身体）
-						this.$alert('Game Over')
+						this.$alert('得分'+'       '+this.score)
 						clearInterval(this.timer)
 						this.position=[[0,0],[1,0],[2,0],[3,0]]
 						this.creatfood()
 						this.direction=1
 						this.dis =false
+						this.dis_end = true
+						this.score = 0
 						console.log(headX+headY)
 					}
 					else{//如果蛇头下一个位置是符合规则的						
 						this.position.push([headX,headY])//将下一个位置添加进数组，头部长一节
-						if(headX!==this.food[0]||headY!==this.food[1]){	//如果下一个头部位置不是食物的位置，即吃食物开始						
-								this.position.shift()//将尾部去掉，一长一短实现了蛇的走动
+						if(headX!==this.food[0]||headY!==this.food[1]){	//如果下一个头部位置不是食物的位置，即吃食物开始							
+							this.position.shift()//将尾部去掉，一长一短实现了蛇的走动
+
 						}else{//如果下一个头部位置是食物
 							this.creatfood()//不去除尾部，再次创建食物（这里有个小bug，随机的食物有几率与身体重合）
 						}
@@ -167,6 +179,26 @@
 				font-size:20px;
 				margin-bottom:20px;
 				border-bottom:1px solid #eee;
+			}
+		}
+		.score{
+			display:inline-block;
+			width:60px;
+			position:absolute;
+			right:100px;
+			top:300px;
+			ul{
+				li{
+					color:#fff;
+					font-weight:bold;
+					line-height:40px;
+				}
+				li:first-child{
+					font-size:20px;
+				}
+				li:last-child{
+					font-size:24px;
+				}
 			}
 		}
 </style>

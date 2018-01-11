@@ -51,6 +51,7 @@ img, fieldset { border: none; }
     *:first-chile+html .clear{min-height:1px;}/*ie7*/
     html,body{
         height: 100%;
+        width: 100%;
     }
     body {
         width: 100%;

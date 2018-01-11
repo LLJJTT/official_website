@@ -74,7 +74,8 @@
 			  			</li>
 			  			<li>
 			  				网页版的贪吃蛇小游戏<br><br>
-			  				Js、Jquery、Css3实现
+			  				兼容移动端<br>
+			  				vue2.x,element-ui,webpack实现
 			  			</li>
 			  		</ul>
 			  	</div>
@@ -116,21 +117,61 @@
 			  	</div>
 			  </el-col>
 			</el-row>
+			<el-row class="row_div">
+			  <el-col :span="8">
+			  	<div class="wrapper">
+			  		<ul>
+			  			<li @click="goNumberGame">
+			  				<img src="../assets/number.jpeg" alt="">
+			  			</li>
+			  			<li>
+			  				数字华容道小游戏
+			  			</li>
+			  			<li>
+			  				网页版的拼图小游戏<br><br>
+			  				兼容移动端<br>
+			  				vue2.x,element-ui,webpack
+			  			</li>
+			  		</ul>
+			  	</div>
+			  </el-col>
+			  <el-col :span="8">
+			  	<div class="wrapper">
+			  	</div>
+			  </el-col>
+			  <el-col :span="8">
+			  	<div class="wrapper">
+			  	</div>
+			  </el-col>
+			</el-row>
 		</div>
 		
 	</div>
 </template>
 
 <script>
+import axios from 'axios';
 	export default{
+		data(){
+			return{
+				// url:'http://localhost/index.php'
+			}
+		},
 		methods:{
 			goSnack:function(){
 				this.$router.push({path:'/snack'});
+			},
+			goNumberGame:function(){
+				this.$router.push({path:'/numbergame'});
 			}
-		}
+		},
+		// created:function(){
+		// 	axios.post(this.url).then(function(data){
+		// 		console.log(data.data[0].username);
+		// 	})
+		// }
 	}
 </script>
-i
 <style lang="scss" scoped>
 	#trust{
 		// position: relative;
@@ -164,13 +205,12 @@ i
 
 			}
 			.row_div:last-child{
-				margin-top:50px;
-				padding-top:50px;
-				border-top:1px solid #f5f5f5;
+			    padding-bottom: 50px;
+			    border-bottom: 1px solid #f5f5f5;
 			}
 			.row_div{
 				width:90%;
-				margin:0 auto;
+				margin:50px auto;
 				.wrapper{
 						font-weight:bold;
 						li:first-child{
@@ -203,4 +243,49 @@ i
 			
 		}
 	}
+	@media(max-width:900px){
+		#trust{
+			.title{
+				padding-top:300px;
+				p:first-child{
+					font-size:16px;
+				}
+				p:nth-child(2){
+					font-size:14px;
+				}
+			}
+			.introduce{
+				.works{
+					font-size:12px;
+					margin-left: 5px;
+				}
+				.row_div{
+					.wrapper{
+						li:first-child{
+							img{
+								width:110px;
+								height:60px;
+							}
+						}
+						li:nth-child(2){
+							font-size:8px;
+						}
+						li:last-child{
+							font-size:6px;
+						}
+					}
+				}
+			}
+		}
+	}
 </style>
+
+
+
+
+
+
+
+
+
+

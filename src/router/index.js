@@ -5,12 +5,11 @@ import AboutUs from '@/components/aboutus'
 import ContactUs from '@/components/contactus'
 import YingYong from '@/components/yingyong'
 import Snack from '@/components/snack'
-
+import Numbergame from '@/components/numbergame'
 // @相当于项目的根路径
 Vue.use(Router)
 
 export default new Router({
-  mode:'history',
   routes: [
     {
       path: '/',
@@ -43,6 +42,11 @@ export default new Router({
       path:'/snack',
       name:'snack',
       component:Snack
+    },
+    {
+      path:'/numbergame',
+      name:'numbergame',
+      component:Numbergame
     }
 
   ]
