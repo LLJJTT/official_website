@@ -6,6 +6,7 @@ import ContactUs from '@/components/contactus'
 import YingYong from '@/components/yingyong'
 import Snack from '@/components/snack'
 import Numbergame from '@/components/numbergame'
+import Stickblock from '@/components/stickblock'
 // @相当于项目的根路径
 Vue.use(Router)
 
@@ -47,6 +48,11 @@ export default new Router({
       path:'/numbergame',
       name:'numbergame',
       component:Numbergame
+    },
+    {
+      path:'/stickblock',
+      name:'stickblock',
+      component:Stickblock
     }
 
   ]

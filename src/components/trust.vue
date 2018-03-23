@@ -137,6 +137,19 @@
 			  </el-col>
 			  <el-col :span="8">
 			  	<div class="wrapper">
+			  		<ul>
+			  			<li @click="goStickBlock">
+			  				<img src="../assets/number.jpeg" alt="">
+			  			</li>
+			  			<li>
+			  				打砖块小游戏
+			  			</li>
+			  			<li>
+			  				小游戏<br><br>
+			  				兼容移动端<br>
+			  				vue2.x,element-ui,webpack
+			  			</li>
+			  		</ul>
 			  	</div>
 			  </el-col>
 			  <el-col :span="8">
@@ -163,7 +176,10 @@ import axios from 'axios';
 			},
 			goNumberGame:function(){
 				this.$router.push({path:'/numbergame'});
-			}
+			},
+			goStickBlock:function(){
+				this.$router.push({path:'/stickblock'});
+			},
 		},
 		// created:function(){
 		// 	axios.post(this.url).then(function(data){
@@ -196,6 +212,7 @@ import axios from 'axios';
 		.introduce{
 			position: relative;
 			margin-top: 60px;
+
 			.works{
 				position:absolute;
 				margin-top: 30px;
@@ -217,8 +234,8 @@ import axios from 'axios';
 							overflow: hidden;
 							img{
 								transition:1.6s;
-								height:202px;
-								width:370px; 
+								height:150px;
+								width:320px; 
 							}
 							img:hover{
 								cursor:pointer;
