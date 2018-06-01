@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <Navbar></Navbar>
-    <router-view></router-view>
+    <transition name="slide-fade">
+      <router-view></router-view>
+    </transition>
     <Footer></Footer>
   </div>
 </template>
@@ -35,5 +37,21 @@ export default {
   padding: 0;
   text-decoration: none;
   list-style: none;
+}
+.slide-fade{
+  position: absolute;left:0;right: 0;
+}
+.slide-fade-enter-active {
+  transition: all 1.8s ease;
+}
+.slide-fade-leave-active {
+
+  transition: all .3s cubic-bezier(2.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+{
+  left:0;right: 0;
+  transform: translateY(500px);
+  opacity: 0;
 }
 </style>

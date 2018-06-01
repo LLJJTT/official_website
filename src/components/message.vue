@@ -43,7 +43,7 @@
 						<div style="clear:both"></div>
 					</li>
 					<li>
-						<button class="btn" :disabled="disabled" v-on:click="submitMessage">提交留言</button>
+						<button class="btn" :disabled="disabled" v-on:click="submitMessage">提交留言<span style="color: #f63300;margin-left: 10px">(暂无此功能)</span></button>
 					</li>
 				</ul>
 				<div style="clear:both"></div>

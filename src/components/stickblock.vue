@@ -1,7 +1,7 @@
 <template>
-  <div style="background:black;height: 500px;">
-    <!-- <img class="animated swing" style="width:60%;margin-left:20%;" src="../../static/bridge3b2.jpg" alt=""> -->
+  <div class="box">
     <canvas id="canvas" width="480" height="500"></canvas>
+    <div class="attention">注意<p class="content">如果你游戏失败会跳转到首页哦~<span>(bug尚未解决)</span></p></div>
   </div>
 </template>
 
@@ -16,19 +16,21 @@ export default {
   },
   mounted () {
     var canvas = document.getElementById('canvas')
-    var ctx = canvas.getContext('2d')
+    var ctx = canvas.getContext('2d')//2d
     var paddle = {
       paddleHeight: 10,
-      paddleWidth: 75,
-      paddleX: (canvas.width - 75) / 2
+      paddleWidth: 160,
+      paddleX: (canvas.width - 100) / 2
     }
+
+    // 定义圆圈
     var yuan = {
       x: canvas.width / 2,
       y: canvas.height - paddle.paddleHeight - 10,
       vx: -2,
       vy: -2,
       r: 10,
-      color: 'rgb(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ')',
+      color: 'red',
       draw: function () {
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2)
@@ -37,6 +39,7 @@ export default {
         ctx.closePath()
       }
     }
+    // 定义被打砖头
     var brick = {
       rowCount: 3,
       columnCount: 5,
@@ -49,17 +52,15 @@ export default {
     var bricks = []
     var jianyin = 1
     function gameIntroduce () {
-      jianyin -= 0.005
+      jianyin -= 0.01
       ctx.beginPath()
-      ctx.font = '40px Verdana'
+      ctx.font = '30px Verdana'
       var gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height)
-      gradient.addColorStop('0', 'magenta')
-      gradient.addColorStop('0.5', 'blue')
-      gradient.addColorStop('1', 'red')
+      gradient.addColorStop('0', '#333')
       ctx.fillStyle = gradient
       ctx.strokeStyle = gradient
-      ctx.fillText('打砖块小游戏\n上开始，下暂停', 40, 230, 400)
-      ctx.strokeText('按确认键开始', 140, 300, 200)
+      ctx.fillText('打砖块', 200, 150, 200)
+      ctx.fillText('\n按W\n或\n回车键开始，空格暂停', 40, 260, 400)
       ctx.closePath()
       ctx.beginPath()
       ctx.fillStyle = 'rgba(255, 255, 255, ' + jianyin + ')'
@@ -78,6 +79,8 @@ export default {
       }
     }
     fuzhi()
+
+    // 生成砖头
     function drawBrick () {
       for (var c = 0; c < brick.columnCount; c++) {
         for (var r = 0; r < brick.rowCount; r++) {
@@ -101,10 +104,11 @@ export default {
         }
       }
     }
+    // 底部移动接板
     function drawPaddle () {
       ctx.beginPath()
       ctx.rect(paddle.paddleX, canvas.height - paddle.paddleHeight, paddle.paddleWidth, paddle.paddleHeight)
-      ctx.fillStyle = '#0095DD'
+      ctx.fillStyle = '#e35e64'
       ctx.fill()
       ctx.closePath()
     }
@@ -113,24 +117,25 @@ export default {
     var begin = false
     document.addEventListener('keydown', keyDownHandler, false)
     document.addEventListener('keyup', keyUpHandler, false)
+    // 键位判断
     function keyDownHandler (e) {
-      if (e.keyCode === 39) {
+      if (e.keyCode === 68) {//右-D
         rightPressed = true
-      } else if (e.keyCode === 37) {
+      } else if (e.keyCode === 65) {//左-A
         leftPressed = true
-      } else if (e.keyCode === 38) {
+      } else if (e.keyCode === 87) {//上-W
         try {
           window.cancelAnimationFrame(a)
           a = window.requestAnimationFrame(draw)
         } catch (e) {
           a = window.requestAnimationFrame(draw)
         }
-      } else if (e.keyCode === 40) {
+      } else if (e.keyCode === 32) {//暂停空格键
         try {
           window.cancelAnimationFrame(a)
         } catch (e) {
           console.log(e)
-        }
+        }  
       } else if (e.keyCode === 13) {
         if (!begin) {
           try {
@@ -148,13 +153,15 @@ export default {
         begin = true
       }
     }
+    // 左右移动
     function keyUpHandler (e) {
-      if (e.keyCode === 39) {
+      if (e.keyCode === 68) {//右-D
         rightPressed = false
-      } else if (e.keyCode === 37) {
+      } else if (e.keyCode === 65) {//左-A
         leftPressed = false
       }
     }
+    // 左右移动画canvas
     function draw () {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       yuan.draw()
@@ -171,27 +178,29 @@ export default {
         yuan.vy = -yuan.vy
         yuan.color = 'rgb(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ')'
       } else if (yuan.y > (canvas.height - yuan.r - paddle.paddleHeight)) {
-        if (yuan.x >= paddle.paddleX - yuan.r && yuan.x <= (paddle.paddleX + paddle.paddleWidth + yuan.r)) {
+        if (yuan.x >= paddle.paddleX - yuan.r && yuan.x <= (paddle.paddleX + paddle.paddleWidth + yuan.r)) {w
           yuan.vy = -yuan.vy
         } else {
+            alert('游戏结束')
+            window.location.href="https://lljjtt.github.io/#/homepage"
           // 游戏失败
-          try {
-            // 初始化数据
-            yuan.x = canvas.width / 2
-            yuan.y = canvas.height - paddle.paddleHeight - 10
-            paddle.paddleX = (canvas.width - 75) / 2
-            rightPressed = false
-            leftPressed = false
-            for (var c = 0; c < brick.columnCount; c++) {
-              for (var r = 0; r < brick.rowCount; r++) {
-                bricks[c][r].status = 1
-              }
-            }
-            cancelAnimationFrame(a)
-            draw()
-          } catch (e) {
-            draw()
-          }
+          // try {
+          //   初始化数据
+          //   yuan.x = canvas.width / 2
+          //   yuan.y = canvas.height - paddle.paddleHeight - 10
+          //   paddle.paddleX = (canvas.width - 75) / 2
+          //   rightPressed = false
+          //   leftPressed = false
+          //   for (var c = 0; c < brick.columnCount; c++) {
+          //     for (var r = 0; r < brick.rowCount; r++) {
+          //       bricks[c][r].status = 1
+          //     }
+          //   }
+          //   cancelAnimationFrame(a)
+          //   draw()
+          // } catch (e) {
+          //   draw()
+          // }
         }
       }
       if (rightPressed && paddle.paddleX < canvas.width - paddle.paddleWidth) {
@@ -208,5 +217,30 @@ export default {
 </script>
 
 <style scoped>
-#canvas{background-color: white;margin: 0 auto;display: block;}
+  #canvas{
+    background-color: #f5f5f5;
+    margin: 0 auto;
+    display: block;
+  }
+  .box{
+    width:100%;
+    margin: 0 auto;
+    background:#000;
+    padding: 100px 0 100px 0;
+  }
+  .attention{
+    margin-top: 40px;
+    color: red;
+    font-size: 40px;
+  }
+  .content{
+    color: #fff;
+    font-size: 20px;
+    margin-top: 40px;
+  }
+  .content span{
+    font-size: 16px;
+    margin-left: 10px;
+    color: #504d4d;
+  }
 </style>

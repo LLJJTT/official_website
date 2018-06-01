@@ -12,6 +12,61 @@
 			  <el-col :span="8">
 			  	<div class="wrapper">
 			  		<ul>
+			  			<li @click="goNumberGame">
+			  				<img src="../assets/number.jpeg" alt="">
+			  			</li>
+			  			<li>
+			  				数字华容道小游戏
+			  			</li>
+			  			<li>
+			  				网页版的拼图小游戏<br><br>
+			  				兼容移动端<br>
+			  				vue2.x,element-ui,webpack
+			  			</li>
+			  		</ul>
+			  	</div>
+			  </el-col>
+			  <el-col :span="8">
+			  	<div class="wrapper">
+			  		<ul>
+			  			<li @click="goStickBlock">
+			  				<img src="../assets/dazhuankua.jpeg" alt="">
+			  			</li>
+			  			<li>
+			  				打砖块小游戏
+			  			</li>
+			  			<li>
+			  				小游戏<br><br>
+			  				兼容移动端<br>
+			  				vue2.x,element-ui,webpack
+			  			</li>
+			  		</ul>
+			  	</div>
+			  </el-col>
+			  <el-col :span="8">
+			  	<div class="wrapper">
+			  		<ul>
+			  			<li @click="goSnack">
+			  				<img src="../assets/tanchishe.jpg" alt="">
+			  			</li>
+			  			<li>
+			  				贪吃蛇小游戏
+			  			</li>
+			  			<li>
+			  				网页版的贪吃蛇小游戏<br><br>
+			  				兼容移动端<br>
+			  				vue2.x,element-ui,webpack实现
+			  			</li>
+			  		</ul>
+			  	</div>
+			  </el-col>
+			</el-row>
+
+
+			<el-row class="row_div">
+			  <el-col :span="8">
+			  	<div class="wrapper">
+			  		<ul>
 			  			<li>
 			  				<a href="http://www.wangdoukeji.com/"><img src="../assets/wangdoukeji.jpeg" alt=""></a>
 			  			</li>
@@ -29,12 +84,11 @@
 			  	<div class="wrapper">
 			  		<ul>
 			  			<li>
-			  				<a href="http://finance.youth.cn/finance_food/201711/t20171120_11034647.htm">
 			  				<img src="../assets/mishisenlin.png" alt="">
 			  				</a>
 			  			</li>
 			  			<li>
-			  				觅食森林web应用App&nbsp;(还没发版)
+			  				觅食森林web应用App&nbsp;(此处不可点)
 			  			</li>
 			  			<li>
 			  				全中国第一个新零售试验店的App,西单唯一食货综合体;<br><br>
@@ -63,23 +117,7 @@
 			  </el-col>
 			</el-row>
 			<el-row class="row_div">
-			  <el-col :span="8">
-			  	<div class="wrapper">
-			  		<ul>
-			  			<li @click="goSnack">
-			  				<img src="../assets/tanchishe.jpg" alt="">
-			  			</li>
-			  			<li>
-			  				贪吃蛇小游戏
-			  			</li>
-			  			<li>
-			  				网页版的贪吃蛇小游戏<br><br>
-			  				兼容移动端<br>
-			  				vue2.x,element-ui,webpack实现
-			  			</li>
-			  		</ul>
-			  	</div>
-			  </el-col>
+			  
 			  <el-col :span="8"><div class="wrapper">
 			  		<ul>
 			  			<li>
@@ -117,46 +155,7 @@
 			  	</div>
 			  </el-col>
 			</el-row>
-			<el-row class="row_div">
-			  <el-col :span="8">
-			  	<div class="wrapper">
-			  		<ul>
-			  			<li @click="goNumberGame">
-			  				<img src="../assets/number.jpeg" alt="">
-			  			</li>
-			  			<li>
-			  				数字华容道小游戏
-			  			</li>
-			  			<li>
-			  				网页版的拼图小游戏<br><br>
-			  				兼容移动端<br>
-			  				vue2.x,element-ui,webpack
-			  			</li>
-			  		</ul>
-			  	</div>
-			  </el-col>
-			  <el-col :span="8">
-			  	<div class="wrapper">
-			  		<ul>
-			  			<li @click="goStickBlock">
-			  				<img src="../assets/number.jpeg" alt="">
-			  			</li>
-			  			<li>
-			  				打砖块小游戏
-			  			</li>
-			  			<li>
-			  				小游戏<br><br>
-			  				兼容移动端<br>
-			  				vue2.x,element-ui,webpack
-			  			</li>
-			  		</ul>
-			  	</div>
-			  </el-col>
-			  <el-col :span="8">
-			  	<div class="wrapper">
-			  	</div>
-			  </el-col>
-			</el-row>
+			
 		</div>
 		
 	</div>

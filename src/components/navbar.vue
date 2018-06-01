@@ -6,20 +6,8 @@
   			</h1>
 	  		<div class="fl_r tab">
 	  			<ul>
-	  				<li @click = "goProduct">
-	  					<a href="javascript:void(0)">作品</a>
-	  			    </li>
 	  				<li>
-	  					<router-link to="/aboutus">关于我</router-link>
-	  				</li>
-	  				<li>
-	  					<router-link to="/contactus">技能</router-link>
-	  				</li>
-	  				<li>
-	  					<router-link to="/homepage">首页</router-link>
-	  				</li>
-	  				<li @click ="goContact">
-	  					<a href="javascript:void(0)">联系我</a>
+	  					<router-link to="/homepage" >回到首页</router-link>
 	  				</li>
 	  			</ul>
 	  		</div>
@@ -35,12 +23,7 @@ export default {
    		}
    },
    methods:{
-   		goContact:function(){
-			  window.scrollTo(1000,9000);
-   		},
-   		goProduct:function(){
-   			window.scrollTo(500,700);
-   		}
+   		
    }
 
 }
@@ -49,8 +32,6 @@ export default {
 <style lang="scss" scoped>
     #navbar{
   		width: 100%;
-  		// background:rgba(0,0,0,0.1);
-  		// opacity: 0.5;
   		position:absolute;
   		margin-top: 20px;
   		z-index: 2;
