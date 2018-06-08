@@ -21,7 +21,7 @@
 			  			<li>
 			  				网页版的拼图小游戏<br><br>
 			  				兼容移动端<br>
-			  				vue2.x,element-ui,webpack
+			  				vue2.x,原生Js,webpack
 			  			</li>
 			  		</ul>
 			  	</div>
@@ -38,7 +38,7 @@
 			  			<li>
 			  				小游戏<br><br>
 			  				兼容移动端<br>
-			  				vue2.x,element-ui,webpack
+			  				H5,Canvas,原生Js
 			  			</li>
 			  		</ul>
 			  	</div>
@@ -55,7 +55,7 @@
 			  			<li>
 			  				网页版的贪吃蛇小游戏<br><br>
 			  				兼容移动端<br>
-			  				vue2.x,element-ui,webpack实现
+			  				原生Js,Element-ui
 			  			</li>
 			  		</ul>
 			  	</div>
@@ -75,7 +75,7 @@
 			  			</li>
 			  			<li>
 			  				技术推广、技术开发、技术咨询、技术服务、软件开发<br><br>
-			  				设计、制作、代理、发布广告、承办展览展示的网站
+			  				jQuery、Mint-ui、H5
 			  			</li>
 			  		</ul>
 			  	</div>
@@ -92,7 +92,7 @@
 			  			</li>
 			  			<li>
 			  				全中国第一个新零售试验店的App,西单唯一食货综合体;<br><br>
-			  				为其量身定做最合理App的开发方案;
+			  				Mint-ui、Vue.js
 			  			</li>
 			  		</ul>
 			  	</div>
@@ -101,7 +101,7 @@
 			  	<div class="wrapper">
 			  		<ul>
 			  			<li>
-			  				<a href="http://blog.sina.com.cn/u/2145289195">
+			  				<a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzI5MDcyNDAyNQ==&scene=124&#wechat_redirect">
 			  				<img src="../assets/yuanxingtaiji.jpg" alt="">
 			  				</a>
 			  			</li>
@@ -110,7 +110,7 @@
 			  			</li>
 			  			<li>
 			  				按照成熟型的微型公众号开发;<br><br>
-			  				为其实现购买、观看课程等功能.
+			  				前后端不分离项目（Tp5、jQuery）
 			  			</li>
 			  		</ul>
 			  	</div>
@@ -130,7 +130,7 @@
 			  			</li>
 			  			<li>
 			  				按照模板要求仿写页面;<br><br>
-			  				适应不同分辨率、纯前端界面.
+			  				es5、css布局
 			  			</li>
 			  		</ul>
 			  	</div>
@@ -148,8 +148,26 @@
 			  				模仿京东一号店&nbsp;&nbsp;(☞github)
 			  			</li>
 			  			<li>
-			  				模仿京东一号店静态网页;<br><br>
-			  				100%还原了原版网页;
+			  				模仿京东一号店100%还原网页;;<br><br>
+			  				css布局
+			  			</li>
+			  		</ul>
+			  	</div>
+			  </el-col>
+			  <el-col :span="8">
+			  	<div class="wrapper">
+			  		<ul>
+			  			<li>
+			  				<a >
+			  				<img src="static/hehe.png" alt="">
+			  				</a>
+			  			</li>
+			  			<li>
+			  				合和天下&nbsp;&nbsp;(多个网站)
+			  			</li>
+			  			<li>
+			  				前端架构<br><br>
+			  				Vue2.x、Axios、Element-ui、Mint-ui、es7、webpack、
 			  			</li>
 			  		</ul>
 			  	</div>

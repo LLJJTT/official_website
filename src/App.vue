@@ -37,6 +37,8 @@ export default {
   padding: 0;
   text-decoration: none;
   list-style: none;
+  width: 100%;
+  height: 100%;
 }
 .slide-fade{
   position: absolute;left:0;right: 0;

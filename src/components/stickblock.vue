@@ -178,7 +178,7 @@ export default {
         yuan.vy = -yuan.vy
         yuan.color = 'rgb(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ')'
       } else if (yuan.y > (canvas.height - yuan.r - paddle.paddleHeight)) {
-        if (yuan.x >= paddle.paddleX - yuan.r && yuan.x <= (paddle.paddleX + paddle.paddleWidth + yuan.r)) {w
+        if (yuan.x >= paddle.paddleX - yuan.r && yuan.x <= (paddle.paddleX + paddle.paddleWidth + yuan.r)) {
           yuan.vy = -yuan.vy
         } else {
             alert('游戏结束')
