@@ -7,7 +7,7 @@
 	  		<div class="fl_r tab">
 	  			<ul>
 	  				<li>
-	  					<router-link to="/homepage" >回到首页</router-link>
+	  					<router-link class="home_a" to="/homepage" >回到首页</router-link>
 	  				</li>
 	  			</ul>
 	  		</div>
@@ -30,6 +30,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.home_a{
+	color: #DD812E;
+}
     #navbar{
   		width: 100%;
   		position:absolute;

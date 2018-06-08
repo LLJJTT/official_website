@@ -9,6 +9,9 @@
 </template>
 
 <script>
+  // var oBody = document.querySelectorAll('#app')
+  // var a = oBody.clientWidth
+  // console.log(a)
 // import aaaaa from '文件路径'
 // import './css/common.css'
 import HomePage from './components/homepage'
@@ -37,7 +40,6 @@ export default {
   padding: 0;
   text-decoration: none;
   list-style: none;
-  width: 100%;
   height: 100%;
 }
 .slide-fade{

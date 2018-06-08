@@ -122,38 +122,38 @@ export default {
 			}
 		}
 	}
-	// @media(max-width:600px){
-	// 	#homepage{
-	// 		.banner{
-	// 			.focus{
-	// 				opacity:1 !important;
-	// 				animation: bigger 4s;
-	// 				animation-fill-mode: forwards;
-	// 				animation-timing-function:linear;
-	// 			}
-	// 			@keyframes bigger{
-	// 				from{
-	// 					width: 100%;
-	// 					height: 100%;
-	// 				}
-	// 				to{
-	// 					width: 100%;
-	// 					height: 116%;
+	@media(max-width:600px){
+		#homepage{
+			.banner{
+				.focus{
+					opacity:1 !important;
+					animation: bigger 4s;
+					animation-fill-mode: forwards;
+					animation-timing-function:linear;
+				}
+				@keyframes bigger{
+					from{
+						width: 100%;
+						height: 100%;
+					}
+					to{
+						width: 100%;
+						height: 116%;
 
-	// 				}
-	// 			}
-	// 		}
-	// 		.intro{
-	// 			.p0{
-	// 				font-size: 25px;
-	// 				padding:0 4px;
-	// 			}
-	// 			.p1{
-	// 				font-size: 22px;
-	// 			}
-	// 		}
-	// 	}
-	// }
+					}
+				}
+			}
+			.intro{
+				.p0{
+					font-size: 25px;
+					padding:0 4px;
+				}
+				.p1{
+					font-size: 22px;
+				}
+			}
+		}
+	}
 </style>
 
 
