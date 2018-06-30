@@ -19,7 +19,7 @@
                 <li>步数</li>
                 <li id="step">{{stepVal}}</li>
             </ul>
-            <ul style="margin-top: 50px;">
+            <ul style="margin-top:20px;">
               <li>时间</li>
               <li>{{stepTime}}&nbsp;s</li>
             </ul>
@@ -123,16 +123,8 @@ export default {
             }
         },
         reStart:function(){
-            this.$confirm('开始游戏数字排列会刷新,你确定要重新开始游戏？', '提示', {
-              confirmButtonText: '确定',
-              cancelButtonText: '取消',
-              type: 'warning'
-            }).then(() => {
-              clearInterval(timer)
-              this.render()
-            }).catch(() => {
-                       
-            });
+            clearInterval(timer)
+          this.render()
         }
     },
     created:function(){
@@ -289,10 +281,10 @@ body {
     .info ul li{
         color: #aaa;
         font-weight: bold;
-        font-size: 26px;
+        font-size: 20px;
     }
     .info ul li:last-child{
-        font-size: 30px;
+        font-size: 18px;
         color: #fff;
     }
     .intro{
@@ -311,6 +303,9 @@ body {
     }
     .intro ul li:last-child{
         color: #fff;
+    }
+    .el-message-box{
+        width:300px !important;
     }
 }
 </style>
