@@ -2,12 +2,15 @@
     <div class="box">
         <div class="wrapper">
             <ul class="puzzle-wrap">
-                <li 
-                    :class="{'puzzle': true, 'puzzle-empty': !puzzle}" 
-                    v-for="(puzzle,index) in puzzles" 
-                    v-text="puzzle"
-                    @click="moveFn(index)"
-                ></li>
+                 <transition-group name="listArr" tag="p" style="">
+                  <li 
+                      :key="puzzle"
+                      :class="{'puzzle': true, 'puzzle-empty': !puzzle}" 
+                      v-for="(puzzle,index) in puzzles" 
+                      v-text="puzzle"
+                      @click="moveFn(index)"
+                  ></li>
+              </transition-group>
             </ul>
             <el-button class="restart" type="primary" @click="reStart">重新开始</el-button>
         </div>
@@ -15,6 +18,10 @@
             <ul>
                 <li>步数</li>
                 <li id="step">{{stepVal}}</li>
+            </ul>
+            <ul style="margin-top: 50px;">
+              <li>时间</li>
+              <li>{{stepTime}}&nbsp;s</li>
             </ul>
         </div>
         <div class="intro">
@@ -28,16 +35,20 @@
 </template>
 
 <script>
+  var timer;
 export default {
     data () {
         return {
             puzzles: [],
-            stepVal:0
+            stepVal:0,
+            stepTime:0,
         }
     },
     methods: {
         // 重置渲染
         render:function() {
+            this.stepVal = 0;
+            this.stepTime = 0
             let puzzleArr = [],
             i = 1
             // 生成包含1 ~ 15数字的数组
@@ -51,10 +62,14 @@ export default {
             // 页面显示
             this.puzzles = puzzleArr
             this.puzzles.push('')
+            var _this = this
+             timer = setInterval(function(){
+                _this.stepTime++
+            },1000)
+
         },
         // 点击方块
         moveFn:function (index) {
-
             // 获取点击位置及其上下左右的值
             let curNum = this.puzzles[index],
                 leftNum = this.puzzles[index - 1],
@@ -66,7 +81,6 @@ export default {
                 this.$set(this.puzzles,index - 1, curNum)
                 this.$set(this.puzzles,index, '')
                 this.stepVal++
-
             } 
             else if (rightNum === '' && 3 !== index % 4) {//右''
                 this.$set(this.puzzles,index + 1, curNum)
@@ -79,7 +93,7 @@ export default {
                 this.stepVal++
             }
             else if (bottomNum === '') {//下''
-                console.log("下")
+                // console.log("下")
                 this.$set(this.puzzles,index + 4, curNum)
                 this.$set(this.puzzles,index, '')
                 this.stepVal++
@@ -89,9 +103,7 @@ export default {
                     message:"当前点击不能动",
                     type:'warning'
                 })
-
             }
-
             this.passFn()
         },
         // 校验是否过关
@@ -100,9 +112,12 @@ export default {
                 const newPuzzles = this.puzzles.slice(0, 15)
                 const isPass = newPuzzles.every((e, i) => e === i + 1)
                 if (isPass) {
+                    clearInterval(timer)
                     this.$alert('你成功了！！');
                     this.$alert('一共用了'+this.stepVal);
-                    this.stepVal=0;
+                    this.$alert('一共用了'+this.stepTime+'秒');
+                    this.stepVal = 0;
+                    this.stepTime = 0
                     this.render()
                 }
             }
@@ -113,7 +128,8 @@ export default {
               cancelButtonText: '取消',
               type: 'warning'
             }).then(() => {
-                this.render()
+              clearInterval(timer)
+              this.render()
             }).catch(() => {
                        
             });
@@ -121,6 +137,7 @@ export default {
     },
     created:function(){
         this.render()
+
     }
 }
 </script>
@@ -160,6 +177,7 @@ body {
     border: 1px solid #ccc;
     cursor: pointer;
     color: #f2f2f2;
+    display: inline-block;
 }
 .puzzle-wrap .puzzle:hover{
     transition: .9s;
@@ -213,6 +231,9 @@ body {
 .restart{
     margin-top: 100px;
 }
+  .listArr-move{
+    transition: transform .5s;
+  }
 @media(max-width:830px){
     .box {
         width:100%;
