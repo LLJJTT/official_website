@@ -31,6 +31,19 @@
                 <li>点击数字,移动位置</li>
             </ul>
         </div>
+        <el-dialog
+              title="恭喜你"
+              :visible.sync="centerDialogVisible"
+              width="70%"
+              center>
+              <div>
+                  <li> <span>你成功了！！一共用了<i style="color: red;font-size: 22px;">{{stepTime}}</i>  秒</span></li>
+                  <li><span>一共用了<i style="color: red;font-size: 22px;">{{stepVal}}</i>  步</span></li>
+              </div>
+              <span slot="footer" class="dialog-footer">
+                <el-button type="primary" @click="centerDialogVisible = false">确 定</el-button>
+              </span>
+            </el-dialog>
     </div>
 </template>
 
@@ -42,6 +55,7 @@ export default {
             puzzles: [],
             stepVal:0,
             stepTime:0,
+            centerDialogVisible:false
         }
     },
     methods: {
@@ -113,9 +127,7 @@ export default {
                 const isPass = newPuzzles.every((e, i) => e === i + 1)
                 if (isPass) {
                     clearInterval(timer)
-                    this.$alert('你成功了！！');
-                    this.$alert('一共用了'+this.stepVal);
-                    this.$alert('一共用了'+this.stepTime+'秒');
+                    this.centerDialogVisible =true  
                     this.stepVal = 0;
                     this.stepTime = 0
                     this.render()
@@ -125,6 +137,7 @@ export default {
         reStart:function(){
             clearInterval(timer)
           this.render()
+          this.centerDialogVisible = false
         }
     },
     created:function(){

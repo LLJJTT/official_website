@@ -2,6 +2,7 @@
   <div class="box">
     <canvas id="canvas" width="480" height="500"></canvas>
     <div class="attention">注意<p class="content">如果你游戏失败会跳转到首页哦~<span>(bug尚未解决)</span></p></div>
+     <div class="attention"><p class="content">如果你把所有砖块都打没~也不会跳转、也不会弹出提示<span>(bug尚未解决)</span></p></div>
   </div>
 </template>
 
@@ -27,8 +28,8 @@ export default {
     var yuan = {
       x: canvas.width / 2,
       y: canvas.height - paddle.paddleHeight - 10,
-      vx: -2,
-      vy: -2,
+      vx: -3,
+      vy: -3,
       r: 10,
       color: 'red',
       draw: function () {
@@ -181,26 +182,7 @@ export default {
         if (yuan.x >= paddle.paddleX - yuan.r && yuan.x <= (paddle.paddleX + paddle.paddleWidth + yuan.r)) {
           yuan.vy = -yuan.vy
         } else {
-            alert('游戏结束')
             window.location.href="https://lljjtt.github.io/#/homepage"
-          // 游戏失败
-          // try {
-          //   初始化数据
-          //   yuan.x = canvas.width / 2
-          //   yuan.y = canvas.height - paddle.paddleHeight - 10
-          //   paddle.paddleX = (canvas.width - 75) / 2
-          //   rightPressed = false
-          //   leftPressed = false
-          //   for (var c = 0; c < brick.columnCount; c++) {
-          //     for (var r = 0; r < brick.rowCount; r++) {
-          //       bricks[c][r].status = 1
-          //     }
-          //   }
-          //   cancelAnimationFrame(a)
-          //   draw()
-          // } catch (e) {
-          //   draw()
-          // }
         }
       }
       if (rightPressed && paddle.paddleX < canvas.width - paddle.paddleWidth) {
