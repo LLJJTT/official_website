@@ -41,6 +41,8 @@ export default {
   text-decoration: none;
   list-style: none;
   height: 100%;
+  overflow-x:hidden;
+  position: relative;
 }
 .slide-fade{
   position: absolute;left:0;right: 0;
