@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HomePage from '@/components/homepage'
 import Snack from '@/components/snack'
 import Numbergame from '@/components/numbergame'
+import Seven from '@/components/seven'
 import Stickblock from '@/components/stickblock'
 // @相当于项目的根路径
 Vue.use(Router)
@@ -29,6 +30,11 @@ export default new Router({
       path:'/numbergame',
       name:'numbergame',
       component:Numbergame
+    },
+    {
+      path:'/seven',
+      name:'seven',
+      component:Seven
     },
     {
       path:'/stickblock',

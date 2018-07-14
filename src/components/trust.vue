@@ -61,6 +61,25 @@
 			  	</div>
 			  </el-col>
 			</el-row>
+			<el-row class="row_div">
+			  <el-col :span="8">
+			  	<div class="wrapper">
+			  		<ul>
+			  			<li @click="goSeven">
+			  				<img src="../assets/number.jpeg" alt="">
+			  			</li>
+			  			<li>
+			  				围堵大逃亡
+			  			</li>
+			  			<li>
+			  				网页版的小游戏<br><br>
+			  				兼容移动端<br>
+			  				vue2.x,原生Js,webpack
+			  			</li>
+			  		</ul>
+			  	</div>
+			  </el-col>
+			</el-row>
 
 
 			<el-row class="row_div">
@@ -196,6 +215,9 @@ import axios from 'axios';
 			},
 			goStickBlock:function(){
 				this.$router.push({path:'/stickblock'});
+			},
+			goSeven:function(){
+				this.$router.push({path:'/seven'});
 			},
 		},
 		// created:function(){
