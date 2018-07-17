@@ -1,5 +1,6 @@
 <template>
   <div id="box">
+    <p class="intro">此游戏移动方向是随机的，逃犯不会分析最短路径，只凭感觉走</p>
     <ul class="block_ul">
         <li class="block" 
         v-for="(item,index) in items"
@@ -30,6 +31,31 @@
       </div>
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="ttt = false">确 定</el-button>
+      </span>
+    </el-dialog>
+
+    <!-- 游戏结束 -->
+     <el-dialog
+      title="你失败了,他已经逃之夭夭"
+      :visible.sync="errord"
+      width="70%"
+      center>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="reset">确 定</el-button>
+      </span>
+    </el-dialog>
+
+    <!-- 游戏成功 -->
+     <el-dialog
+      title="恭喜你"
+      :visible.sync="successStatus"
+      width="70%"
+      center>
+      <div class="su">
+        成功捉拿逃犯！
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="success">确 定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -70,11 +96,16 @@ export default {
         left:false,
         right:false,
       },
+      // 
       rankList:[],
-      // 排序产生的最小方向
-      minDirection:'',
-      // 排序产生的最小距离
-      minDistance:''
+      newsArr:[],
+      goArr:[],
+      beforeIndex:'',
+      // tree arr
+      treeArr:[],
+      errord:false,
+      selectTrue:false,
+      successStatus:false
     }
   },
   methods: {
@@ -101,21 +132,10 @@ export default {
         else{
           item.distance = 10 -this.criminalPosition%10  - 1
         }
-      })
-      // 排序
-      function compare(property){
-        return function(a,b){
-          var value1 = a[property];
-          var value2 = b[property];
-          return value1 - value2;
+        if (item.distance==0) {
+          this.errord = true
         }
-      }
-      // 按照distance 小到大 排序 
-      this.rankList = this.margin.sort(compare('distance'))
-      // 获取最小距离  +  方向名
-      this.minDirection = this.rankList[0].name
-      this.minDistance = this.rankList[0].distance
-      console.log(this.rankList)
+      })
     },
     // 获取上下围堵状态
     getStop(){
@@ -129,9 +149,11 @@ export default {
       let srcBottom = oBottom.getAttribute('src')
       let srcLeft = oLeft.getAttribute('src')
       let srcRight = oRight.getAttribute('src')
+      this.goArr.push(this.criminalPosition - 10,this.criminalPosition + 10,this.criminalPosition - 1,this.criminalPosition + 1)
       // 上
       if (InitSrc == srcTop ) {
         this.stop.top = true
+        this.rankList.push(this.criminalPosition - 10)
       }
       else{
         this.stop.top = false
@@ -139,6 +161,7 @@ export default {
       // 下
       if (InitSrc == srcBottom ) {
         this.stop.bottom = true
+        this.rankList.push(this.criminalPosition + 10)
       }
       else{
         this.stop.bottom = false
@@ -147,6 +170,7 @@ export default {
       // 左
       if (InitSrc == srcLeft ) {
         this.stop.left = true
+        this.rankList.push(this.criminalPosition - 1)
       }
       else{
         this.stop.left = false
@@ -154,43 +178,119 @@ export default {
       // 右
       if (InitSrc == srcRight ) {
         this.stop.right = true
+        this.rankList.push(this.criminalPosition + 1)
       }
       else{
         this.stop.right = false
       }
-      console.log(this.stop)
+
+
 
     },
     // 犯人移动
     escape(){
-      // 左移动 根据围堵方向状态 +  最短方向昵称
-      if ( this.minDirection == 'left' && this.stop.left == false) {
-        let oInitNew = document.querySelectorAll('.block')[this.criminalPosition-1].querySelector('img')
-        let oInitOld = document.querySelectorAll('.block')[this.criminalPosition].querySelector('img')
-        oInitNew.style.opacity = '1'
-        oInitOld.style.opacity = '0'
-        this.criminalPosition = this.criminalPosition - 1
+      if(this.stop.bottom===true&&this.stop.top===true&&this.stop.left===true&&this.stop.right===true){
+          this.successStatus = true
+          return
       }
-      // else if (this.minDirection == 'left' && this.stop.left == false) {}
+      // 数组去重
+      var set1 = new Set(this.rankList);
+      var set2 = new Set(this.goArr);
+      console.log("当前点击障碍位置  "+this.rankList)
+      console.log("没移动之前，M的上-下-左-右的位置   "+this.goArr)
+      var newArr1 = Array.from(set1);//去重之后
+      var newArr2 = Array.from(set2);//去重之后
+
+      // 数组相减法
+      var arr1 = newArr2;
+      var arr2 = newArr1;
+      var arr3 = [];
+      arr1.forEach((a)=>{
+          let c = arr2.findIndex(b=>a == b);
+          if (c > -1) {
+            delete arr2[c]
+          }
+          else {
+            arr3.push(a)
+          }
+      });
+
+      // console.log(arr3)//减完之后
+      // 随机数产生移动方向数字
+      var q = arr3[Math.floor(Math.random()*arr3.length)]//随机获取可移动方向数字
+      let oInitNew = document.querySelectorAll('.block')[q].querySelector('img')
+      let oInitOld = document.querySelectorAll('.block')[this.criminalPosition].querySelector('img')
+      oInitNew.style.opacity = '1'
+      oInitNew.style.transition = '0.8s'
+      oInitOld.style.opacity = '0'
+      oInitOld.style.transition = '0.4s'
+      this.criminalPosition = q
+      console.log("M随机移动之后的位置"+q)
+      this.goArr=[]
+      this.getMargin()
+      console.log(this.stop)
     },
     // 点击方块
     showWall(index){
+      // 点击选取逃犯位置
       if (this.selectCriminal==false) {
-        this.criminalPosition = index
-        // 展示犯人位置
-        let oInit = document.querySelectorAll('.block')[index].querySelector('img')
-        oInit.style.opacity = '1'
-        this.selectCriminal = true
-        this.ttt = true
-        this.getMargin()
+        if (index==0||index==1||index==2||index==3||index==4||index==5||index==6||index==7||index==8||index==9||index==10||index==20||index==30||index==40||index==50||index==60||index==19||index==29||index==39||index==49||index==59||index==69) {
+          this.$message({
+              message:"当前选择无效",
+              type:'error'
+            })
+        }
+        else{
+          this.criminalPosition = index
+          console.log("M的位置   "+this.criminalPosition)
+          // 展示犯人位置
+          let oInit = document.querySelectorAll('.block')[index].querySelector('img')
+          oInit.style.opacity = '1'
+          this.selectCriminal = true
+          this.ttt = true
+          this.getMargin()
+        }
+        
       }
       else{
-        let oInit = document.querySelectorAll('.block')[index].querySelector('img')
-        oInit.src = 'static/tree.png'
-        oInit.style.opacity = '1'
-        this.getStop()
-        this.escape()
+        this.beforeIndex = index
+        // 判断点过的树、不可点
+        for(let i = 0;i<this.treeArr.length;i++){
+          if (this.beforeIndex==this.treeArr[i]) {
+            this.$message({
+              message:"此处不可点",
+              type:'error'
+            })
+            return
+          }
+        }
+        if (this.criminalPosition!=index) {
+          let oInit = document.querySelectorAll('.block')[index].querySelector('img')
+          this.treeArr.push(index)
+          oInit.src = 'static/tree.png'
+          oInit.style.opacity = '1'
+          this.getStop()
+          this.getMargin()
+          this.escape()
+        }
+        else{
+          this.$message({
+              message:"此处不可点",
+              type:'error'
+          })
+        }
+        
       }
+    },
+    // 失败之后点确定
+    reset(){
+      this.errord = false
+      window.location.reload()
+    },
+    // 成功之后点下一局
+    success(){
+      this.successStatus = false
+      window.location.reload()
     }
   },
   created:function(){
@@ -256,6 +356,17 @@ export default {
  }
  .show{
   color: #0ba00b;
+ }
+ .intro{
+  font-size: 20px;
+  color: #50ed6b;
+  margin-bottom: 20px;
+ }
+ .su{
+  font-size: 30px;
+  color: #3f8b4d;
+  text-align: center;
+  letter-spacing: 4px;
  }
 </style>
 

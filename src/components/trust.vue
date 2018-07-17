@@ -21,7 +21,7 @@
 			  			<li>
 			  				网页版的拼图小游戏<br><br>
 			  				兼容移动端<br>
-			  				vue2.x,原生Js,webpack
+			  				vue2.x,原生Js,Vue-transition
 			  			</li>
 			  		</ul>
 			  	</div>
@@ -55,7 +55,7 @@
 			  			<li>
 			  				网页版的贪吃蛇小游戏<br><br>
 			  				兼容移动端<br>
-			  				原生Js,Element-ui
+			  				原生Js
 			  			</li>
 			  		</ul>
 			  	</div>
@@ -66,7 +66,7 @@
 			  	<div class="wrapper">
 			  		<ul>
 			  			<li @click="goSeven">
-			  				<img src="../assets/number.jpeg" alt="">
+			  				<img src="static/seven.jpeg" alt="">
 			  			</li>
 			  			<li>
 			  				围堵大逃亡
@@ -74,7 +74,39 @@
 			  			<li>
 			  				网页版的小游戏<br><br>
 			  				兼容移动端<br>
-			  				vue2.x,原生Js,webpack
+			  				vue2.x,原生Js,Vue-transition
+			  			</li>
+			  		</ul>
+			  	</div>
+			  </el-col>
+			  <el-col :span="8">
+			  	<div class="wrapper">
+			  		<ul>
+			  			<li @click="">
+			  				<img src="static/five.jpeg" alt="">
+			  			</li>
+			  			<li>
+			  				五子棋
+			  			</li>
+			  			<li>
+			  				网页版的小游戏<br><br>
+			  				<span class="wait_new">待更新</span><br>
+			  			</li>
+			  		</ul>
+			  	</div>
+			  </el-col>
+			  <el-col :span="8">
+			  	<div class="wrapper">
+			  		<ul>
+			  			<li @click="">
+			  				<img src="static/zuiduan.jpeg" alt="">
+			  			</li>
+			  			<li>
+			  				找最短距离
+			  			</li>
+			  			<li>
+			  				网页版的小游戏<br><br>
+			  				<span class="wait_new">待更新</span><br>
 			  			</li>
 			  		</ul>
 			  	</div>
@@ -333,6 +365,10 @@ import axios from 'axios';
 				}
 			}
 		}
+	}
+	.wait_new{
+		color: red;
+		font-size: 20px;
 	}
 </style>
 
