@@ -9,7 +9,8 @@
       <button class="btn" @click="startGame">PLAY</button>
     </div>
     <div id="svg_div">
-      <svg id="svg"  preserveAspectRatio="none"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"></svg>
+      <svg id="svg"  preserveAspectRatio="none"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      </svg>
     </div>
   </div>
 </template>
@@ -20,7 +21,7 @@
 	    return {
 	    	score:'0',
 	    	showRule:true,
-        x:1100,
+        x:1500,
         y:600,
         x1:0,
         y1:0,
@@ -43,7 +44,7 @@
 
         // 生成初始位置
         var dot1 = document.createElementNS("http://www.w3.org/2000/svg","circle");
-        this.x = Math.floor(Math.random() * 1200 + 1);
+        this.x = Math.floor(Math.random() * 1500 + 1);
         this.y = Math.floor(Math.random() * 800 + 1);
         this.x1 = this.x
         this.y1 = this.y
@@ -57,7 +58,7 @@
         // 随机产生圆圈
         for(var i=0;i<40;i++){
           var dot = document.createElementNS("http://www.w3.org/2000/svg","circle");
-          this.x = Math.floor(Math.random() * 1200 + 1);
+          this.x = Math.floor(Math.random() * 1500 + 1);
           this.y = Math.floor(Math.random() * 800 + 1);
           dot.setAttribute("r", 8);
           dot.setAttribute("cx", this.x);
