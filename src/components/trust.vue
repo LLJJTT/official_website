@@ -98,7 +98,7 @@
 			  <el-col :span="8">
 			  	<div class="wrapper">
 			  		<ul>
-			  			<li @click="">
+			  			<li @click="goShortest">
 			  				<img src="static/zuiduan.jpeg" alt="">
 			  			</li>
 			  			<li>
@@ -251,6 +251,9 @@ import axios from 'axios';
 			goSeven:function(){
 				this.$router.push({path:'/seven'});
 			},
+			goShortest(){
+				this.$router.push({path:'/shortest'});
+			}
 		},
 		// created:function(){
 		// 	axios.post(this.url).then(function(data){

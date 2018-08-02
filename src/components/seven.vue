@@ -234,7 +234,7 @@ export default {
     showWall(index){
       // 点击选取逃犯位置
       if (this.selectCriminal==false) {
-        if (index==0||index==1||index==2||index==3||index==4||index==5||index==6||index==7||index==8||index==9||index==10||index==20||index==30||index==40||index==50||index==60||index==19||index==29||index==39||index==49||index==59||index==69) {
+        if (index==0||index==1||index==2||index==3||index==4||index==5||index==6||index==7||index==8||index==9||index==10||index==20||index==30||index==40||index==50||index==60||index==19||index==29||index==39||index==49||index==59||index==60||index==61||index==62||index==63||index==64||index==65||index==66||index==67||index==68||index==69) {
           this.$message({
               message:"当前选择无效",
               type:'error'
