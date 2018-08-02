@@ -8,10 +8,35 @@
       <h1>找到最近的黄点</h1>
       <button class="btn" @click="startGame">PLAY</button>
     </div>
-    <div id="svg_div">
+    <div  id="svg_div">
       <svg id="svg"  preserveAspectRatio="none"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <circle @click="clickCicle(item)" v-for="item in arry" r="8" :cx="item.cx" :cy="item.cy" class="dotted" :style="item.cstyle"></circle>
       </svg>
     </div>
+    <!-- 游戏结束 -->
+     <el-dialog
+      title="你眼力太差了！"
+      :visible.sync="errord"
+      width="70%"
+      center>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="errord = false">确 定</el-button>
+      </span>
+    </el-dialog>
+
+    <!-- 游戏成功 -->
+     <el-dialog
+      title="66666666666"
+      :visible.sync="successStatus"
+      width="70%"
+      center>
+      <div class="su">
+        得分：<span>{{score}}</span>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="successStatus = false">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -19,12 +44,23 @@
 	export default{
 		data () {
 	    return {
+        count:2,
 	    	score:'0',
 	    	showRule:true,
+        showSVG:false,
         x:1500,
         y:600,
         x1:0,
         y1:0,
+        v_width:0,
+        v_height:0,
+        arry:[],
+        circleStyle:'',
+        minDistanceArr:[],
+        topPaixu:[],
+        twoDistance:'',
+        errord:false,
+        successStatus:false     
 	    }
 	  },
 	  methods: {
@@ -36,16 +72,17 @@
       // 重新开始
       reStart(){
         this.showRule =true
-        this.score = 0
       },
       // 初始化小圆圈
       initCircle(){
+        this.arry = []
+        this.topPaixu = []
+        this.minDistanceArr =[]
         var svg = document.getElementById("svg");
-
         // 生成初始位置
         var dot1 = document.createElementNS("http://www.w3.org/2000/svg","circle");
-        this.x = Math.floor(Math.random() * 1500 + 1);
-        this.y = Math.floor(Math.random() * 800 + 1);
+        this.x = Math.floor(Math.random() * this.v_width + 1);
+        this.y = Math.floor(Math.random() * this.v_height + 1);
         this.x1 = this.x
         this.y1 = this.y
         dot1.setAttribute("r", 14);
@@ -56,31 +93,93 @@
         svg.appendChild(dot1)
 
         // 随机产生圆圈
-        for(var i=0;i<40;i++){
-          var dot = document.createElementNS("http://www.w3.org/2000/svg","circle");
-          this.x = Math.floor(Math.random() * 1500 + 1);
-          this.y = Math.floor(Math.random() * 800 + 1);
-          dot.setAttribute("r", 8);
-          dot.setAttribute("cx", this.x);
-          dot.setAttribute("cy", this.y);
-          dot.setAttribute("style","fill:#e9ff03;transform-origin: " + this.x + 'px ' + this.y + 'px;');
-          dot.setAttribute("class","dotted")
-          svg.appendChild(dot)
-
-          // 初始化线段
+        for(var i=0;i<this.count;i++){
+          let cxx = Math.floor(Math.random() * this.v_width + 1)
+          let cyy = Math.floor(Math.random() * this.v_height + 1)
+          console.log(cxx)
+          this.arry.push({cx:cxx,cy:cyy,cstyle:"fill:rgba(241, 196, 15,1.0);"+"transform-origin:" +cxx+ 'px ' +cyy+ 'px;'})
+           this.$set(this.arry,"index",{cx:cxx,cy:cyy,cstyle:"fill:rgba(241, 196, 15,1.0);"+"transform-origin:" +cxx+ 'px ' +cyy+ 'px;'})
+        }
+       
+        // 初始化线段
+        this.arry.map((item,index) =>{
           var line  = document.createElementNS("http://www.w3.org/2000/svg", "line");
           line.setAttribute("x1",this.x1);
           line.setAttribute("y1",this.y1);
-          line.setAttribute("x2",this.x);
-          line.setAttribute("y2",this.y);
+          line.setAttribute("x2",item.cx);
+          line.setAttribute("y2",item.cy);
           line.setAttribute("class","line");
           svg.appendChild(line)
-        }
+        })
+        this.getSortArr()
+        // 
       },
-     
+      // 成功之后移除
+      removeCircle(){
+        var firstDot = document.getElementById("firstDot");
+        var svg = document.getElementById("svg");
+        var dotted = document.getElementsByClassName('dotted')
+        var line = document.getElementsByClassName('line')
+        // 必须倒着删除
+        for (var i = this.arry.length - 1; i >= 0; i--) {
+          svg.removeChild(line[i])
+          svg.removeChild(dotted[i])
+        }
+        svg.removeChild(firstDot)
+      },
+      //响应式显示
+      getViewport(){
+        this.v_width = document.body.clientWidth -330
+        this.v_height = document.body.clientHeight -330
+      },
+      // 点黄圈
+      clickCicle(item){
+        // 获取点的黄圈到绿色距离
+        let pfh = Math.abs(this.x-item.cx)*Math.abs(this.x-item.cx)+Math.abs(this.y-item.cy)*Math.abs(this.y-item.cy)//平方和
+        this.twoDistance = Math.pow(pfh,0.5)
+        if (this.twoDistance===this.minDistanceArr[0].value) {
+          item.cstyle ="fill:rgba(228, 51, 51,1.0); transform-origin: " + item.cx + 'px ' + item.cy + 'px;'
+          this.minDistanceArr.splice(0,1)//从start的位置开始向后删除delCount个元素
+          this.score++
+          console.log(this.minDistanceArr)
+          // 成功
+          if(this.minDistanceArr.length==0){
+            this.successStatus = true
+            this.count++
+            this.removeCircle()
+            this.initCircle()
+          }
+        }
+        // 失败
+        else if(this.twoDistance!=this.minDistanceArr[0].value){
+          this.errord = true
+          this.score = 0
+        }
+        
+      },
+      // 获取最短路径排序数组
+      getSortArr(){
+        this.arry.map((item,index) =>{
+          let pfh = Math.abs(this.x-item.cx)*Math.abs(this.x-item.cx)+Math.abs(this.y-item.cy)*Math.abs(this.y-item.cy)
+          this.minDistanceArr.push({index:index,value:Math.pow(pfh,0.5)})
+        })
+        //升序排序
+        var compare = function (a, b) {
+          var x = a.value
+          var y = b.value
+          if (x < y) {
+              return -1;
+          } else if (x > y) {
+              return 1;
+          } else {
+              return 0;
+          }
+        }
+        this.topPaixu = this.minDistanceArr.sort(compare)
+      },
 	  },
 	  created(){
-
+      this.getViewport()
 	  },
     mounted(){
 
@@ -129,6 +228,7 @@ svg{
 .btn {
   background: transparent;
   cursor:pointer;
+
   color:rgba(241, 196, 15,1.0);
   font-weight:bold;
   padding: 15px 60px;
@@ -185,4 +285,15 @@ svg{
   overflow: hidden;
   margin:0 auto ;
 }
+.su{
+  font-size: 30px;
+  color: #3f8b4d;
+  text-align: center;
+  letter-spacing: 4px;
+ }
+ .su span{
+  font-size: 36px;
+  color: #f51111;
+  text-align: center;
+ }
 </style>
