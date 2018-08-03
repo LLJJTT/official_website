@@ -94,13 +94,13 @@
 
         // 随机产生圆圈
         for(var i=0;i<this.count;i++){
+
           let cxx = Math.floor(Math.random() * this.v_width + 1)
           let cyy = Math.floor(Math.random() * this.v_height + 1)
-          console.log(cxx)
           this.arry.push({cx:cxx,cy:cyy,cstyle:"fill:rgba(241, 196, 15,1.0);"+"transform-origin:" +cxx+ 'px ' +cyy+ 'px;'})
-           this.$set(this.arry,"index",{cx:cxx,cy:cyy,cstyle:"fill:rgba(241, 196, 15,1.0);"+"transform-origin:" +cxx+ 'px ' +cyy+ 'px;'})
+           // this.$set(this.arry,"index",{cx:cxx,cy:cyy,cstyle:"fill:rgba(241, 196, 15,1.0);"+"transform-origin:" +cxx+ 'px ' +cyy+ 'px;'})
         }
-       
+        console.log(this.arry)
         // 初始化线段
         this.arry.map((item,index) =>{
           var line  = document.createElementNS("http://www.w3.org/2000/svg", "line");
@@ -141,7 +141,7 @@
           item.cstyle ="fill:rgba(228, 51, 51,1.0); transform-origin: " + item.cx + 'px ' + item.cy + 'px;'
           this.minDistanceArr.splice(0,1)//从start的位置开始向后删除delCount个元素
           this.score++
-          console.log(this.minDistanceArr)
+          // console.log(this.minDistanceArr)
           // 成功
           if(this.minDistanceArr.length==0){
             this.successStatus = true
@@ -183,7 +183,7 @@
 	  },
     mounted(){
 
-    }
+    },
 	}
 	</script>
 
