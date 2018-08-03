@@ -99,14 +99,14 @@
 			  	<div class="wrapper">
 			  		<ul>
 			  			<li @click="goShortest">
-			  				<img src="static/zuiduan.jpeg" alt="">
+			  				<img src="static/zuiduan.png" alt="">
 			  			</li>
 			  			<li>
 			  				找最短距离
 			  			</li>
 			  			<li>
 			  				网页版的小游戏<br><br>
-			  				<span class="wait_new">待更新</span><br>
+			  				svg、circle、line<br>
 			  			</li>
 			  		</ul>
 			  	</div>
