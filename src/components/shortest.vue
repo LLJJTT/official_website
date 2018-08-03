@@ -1,6 +1,7 @@
 <template>
 	<div id="shortest">
     <div id="re_div">
+      <span v-if="showCount">第&nbsp;<i>{{count-1}}</i>&nbsp;关</span>
       <button class="btn1" @click="reStart">Restart</button>
     </div>
 		<div id="score">{{score}}</div>
@@ -15,7 +16,7 @@
     </div>
     <!-- 游戏结束 -->
      <el-dialog
-      title="你眼力太差了！"
+      title="赶紧把眼镜戴上！！！"
       :visible.sync="errord"
       width="70%"
       center>
@@ -26,7 +27,7 @@
 
     <!-- 游戏成功 -->
      <el-dialog
-      title="66666666666"
+      title="过关，点确定进行下一关"
       :visible.sync="successStatus"
       width="70%"
       center>
@@ -60,18 +61,20 @@
         topPaixu:[],
         twoDistance:'',
         errord:false,
-        successStatus:false     
+        successStatus:false,
+        showCount:false   
 	    }
 	  },
 	  methods: {
 	  	// 点击开始游戏
 	  	startGame(){
         this.showRule =false
+        this.showCount = true
         this.initCircle()
 	  	},
       // 重新开始
       reStart(){
-        this.showRule =true
+         window.location.reload()
       },
       // 初始化小圆圈
       initCircle(){
@@ -123,8 +126,8 @@
         // 必须倒着删除
         for (var i = this.arry.length - 1; i >= 0; i--) {
           svg.removeChild(line[i])
-          svg.removeChild(dotted[i])
         }
+        this.arry = []
         svg.removeChild(firstDot)
       },
       //响应式显示
@@ -153,7 +156,6 @@
         // 失败
         else if(this.twoDistance!=this.minDistanceArr[0].value){
           this.errord = true
-          this.score = 0
         }
         
       },
@@ -260,6 +262,14 @@ svg{
 #re_div{
   text-align: right;
   margin-right: 10%;
+}
+#re_div span{
+  color: #fff;
+  font-size: 24px;
+}
+#re_div i{
+  color: #11f8af;
+  font-size: 30px;
 }
 #rule {
   position: relative;
