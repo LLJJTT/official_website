@@ -6,6 +6,7 @@ import Numbergame from '@/components/numbergame'
 import Seven from '@/components/seven'
 import Stickblock from '@/components/stickblock'
 import Shortest from '@/components/shortest'
+import Cube from '@/components/cube'
 // @相当于项目的根路径
 Vue.use(Router)
 export default new Router({
@@ -45,6 +46,11 @@ export default new Router({
       path:'/shortest',
       name:'shortest',
       component:Shortest
+    },
+    {
+      path:'/cube',
+      name:'cube',
+      component:Cube
     }
 
   ]

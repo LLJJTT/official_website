@@ -82,15 +82,15 @@
 			  <el-col :span="8">
 			  	<div class="wrapper">
 			  		<ul>
-			  			<li @click="">
-			  				<img src="static/five.jpeg" alt="">
+			  			<li @click="goCube">
+			  				<img src="static/cube.png" alt="">
 			  			</li>
 			  			<li>
-			  				五子棋
+			  				旋转立方
 			  			</li>
 			  			<li>
-			  				网页版的小游戏<br><br>
-			  				<span class="wait_new">待更新</span><br>
+			  				动画特效<br><br>
+			  				figure、section、transform<br>
 			  			</li>
 			  		</ul>
 			  	</div>
@@ -253,6 +253,9 @@ import axios from 'axios';
 			},
 			goShortest(){
 				this.$router.push({path:'/shortest'});
+			},
+			goCube(){
+				this.$router.push({path:'/cube'});
 			}
 		},
 		// created:function(){

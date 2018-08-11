@@ -16,7 +16,8 @@
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.1",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "xterm": "^3.5.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
