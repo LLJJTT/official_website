@@ -1,9 +1,10 @@
 <template>
 	<div id="footer">
 		<div id="intro">
-			<span>&copy;&nbsp;2017&nbsp;个人网站&nbsp;&nbsp;李井欢所有</span>
+			<span><img class="beian" src="static/beian.png" alt="">&nbsp;&nbsp;黑ICP备&nbsp;18006539号&nbsp;&copy;&nbsp;2017&nbsp;个人网站&nbsp;&nbsp;李井欢所有</span>
 		</div>
-		<div></div>
+		<div>
+		</div>
 	</div>
 </template>
 <script>
@@ -25,7 +26,6 @@
 		padding-top:50px;
 		padding-bottom:50px;
 		#intro{
-
 			width:400px;
 			margin:0 auto;
 			color:#747474;;
@@ -40,5 +40,10 @@
 			}
 		}
 		
+	}
+	.beian{
+		vertical-align: middle;
+		width: 20px;
+		height: 20px;
 	}
 </style>

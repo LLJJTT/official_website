@@ -7,7 +7,13 @@
 	  		<div class="fl_r tab">
 	  			<ul>
 	  				<li>
-	  					<router-link class="home_a" to="/homepage" >回到首页</router-link>
+	  					<router-link class="home_a" to="/homepage" >首页</router-link>
+	  				</li>
+	  				<li v-if="login_status">
+	  					<router-link class="home_a" to="/login" >登录</router-link>
+	  				</li>
+	  				<li v-if="back_status">
+	  					<router-link class="home_a" to="/leave_info" >后台</router-link>
 	  				</li>
 	  			</ul>
 	  		</div>
@@ -19,11 +25,35 @@ export default {
    name:'navbar',
    data:function(){
    		return{
-
+   			login_status:true,
+   			back_status:false
    		}
    },
    methods:{
-   		
+   },
+   watch:{
+		  $route(to,from){
+		  	var a  = sessionStorage.getItem('login')
+   			var route_name = this.$route.name
+   			if (route_name==='leave_info') {
+		   		this.login_status = false
+		   		this.back_status = false
+		   	}
+		   	else if (route_name!='leave_info'){
+		   		if (a) {
+			   		this.back_status = true
+		   			this.login_status = false
+			   	}
+			   	else{
+			   		this.login_status = true
+			   	}
+		   	}
+		   	
+		    console.log(this.$route);
+		  }
+		},
+   created(){
+   	
    }
 
 }

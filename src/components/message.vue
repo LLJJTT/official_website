@@ -20,7 +20,7 @@
 						电话:18745708406
 					</li>
 					<li>
-						工作时间 9:00 ~ 17:00<br>工作日（周一至周五）
+						工作时间 8:30 ~ 17:30<br>工作日（周一至周五）
 					</li>
 				</ul>
 				<div style="clear:both"></div>
@@ -43,7 +43,7 @@
 						<div style="clear:both"></div>
 					</li>
 					<li>
-						<button class="btn" :disabled="disabled" v-on:click="submitMessage">提交留言<span style="color: #f63300;margin-left: 10px">(暂无此功能)</span></button>
+						<button class="btn" :disabled="disabled" v-on:click="submitMessage">提交留言<span style="color: #f63300;margin-left: 10px"></span></button>
 					</li>
 				</ul>
 				<div style="clear:both"></div>
@@ -53,6 +53,8 @@
 	</div>
 </template>
 <script>
+	import axios from 'axios'
+	import { Loading } from 'element-ui';
 	export default{
 		data:function(){
 			return{
@@ -60,11 +62,11 @@
 				numVal:'',
 				textVal:'',
 				disabled:true,
+				url:'https://persional.lijinghuan.com/back_end/leave_info.php'
 			}
 		},
 		methods:{
 			textChange0:function(){
-
 				const snow0 = document.getElementsByClassName('snow0')[0];
 				if (this.nameVal!='') {
 					snow0.style.opacity="0";
@@ -102,9 +104,54 @@
 			},
 			submitMessage:function(){
 				if(this.nameVal!=''&&this.numVal!=''&&this.textVal!=''){
-					this.$message({
-						message:'您留言成功了，我会尽快联系你！',
-						type:'warning'
+					var loadingInstance = Loading.service({ 
+						fullscreen: true,
+						background:'rgba(0, 0, 0, 0.8)' });
+					var formData = new FormData()
+					formData.append("nickname",this.nameVal)
+					formData.append("phone",this.numVal)
+					formData.append("textval",this.textVal)
+					axios({
+						url:this.url,
+						method:'post',
+						data:formData
+					})
+					.then(res =>{
+						if (res.data.code==200) {
+							var _this = this
+							this.nameVal = ''
+							this.numVal = ''
+							this.textVal = ''
+							this.disabled = true;
+							const oBtn  = document.getElementsByClassName('btn')[0];
+							oBtn.style.background = '#aaa';
+							setTimeout(res =>{
+								_this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
+								  loadingInstance.close();
+								});
+								_this.$message({
+									message:'您留言成功了，我会尽快联系你！',
+									type:'success',
+									duration:5000
+								})
+							},2000)
+						}
+						else{
+							var _this = this
+							setTimeout(res =>{
+								_this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
+								  loadingInstance.close();
+								});
+								_this.$message({
+									message:'您留言失败！！！！请重新留言！',
+									type:'error',
+									duration:5000
+								})
+							},2000)
+						}
+					})
+					.catch(res =>{
+						console.log(res)
 					})
 				}
 			}
@@ -179,7 +226,7 @@
 							border:none;
 							height:30px;
 							background: #aaa;
-							color:#fff;
+							color:#d33838;
 							font-size:20px;
 							text-align:center;
 							border-radius:2px;
@@ -203,13 +250,14 @@
 					li:first-child{
 						margin-top: 40px;
 						#inp_text{
+							border: none;
 							width:80%;
 							height:70px;
 							background: #bbbbbb;
 							box-shadow:none;
 							text-indent:10px;
 							font-weight:bold;
-							color:#fff;
+							color:#d33838;
 							font-size:20px;
 							border-radius:2px;
 							overflow:hidden;
