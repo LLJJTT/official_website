@@ -8,6 +8,24 @@
 			<div class="works">
 				我<br>的<br>作<br>品<br>	
 			</div>
+			<el-row class="row_div" style="display: none">
+			  <el-col :span="8">
+			  	<div class="wrapper">
+			  		<ul>
+			  			<li @click="goTypingGame">
+			  				<img src="static/dazi.jpg" alt="">
+			  			</li>
+			  			<li>
+			  				打字游戏
+			  			</li>
+			  			<li>
+			  				网页版的打字小游戏<br><br>
+			  				vue2.x,es6
+			  			</li>
+			  		</ul>
+			  	</div>
+			  </el-col>
+			</el-row>
 			<el-row class="row_div">
 			  <el-col :span="8">
 			  	<div class="wrapper">
@@ -256,6 +274,9 @@ import axios from 'axios';
 			},
 			goCube(){
 				this.$router.push({path:'/cube'});
+			},
+			goTypingGame(){
+				this.$router.push({path:'/typing_game'});
 			}
 		},
 		// created:function(){

@@ -49,7 +49,6 @@ export default {
 			   	}
 		   	}
 		   	
-		    console.log(this.$route);
 		  }
 		},
    created(){

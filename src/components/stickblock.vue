@@ -182,7 +182,7 @@ export default {
         if (yuan.x >= paddle.paddleX - yuan.r && yuan.x <= (paddle.paddleX + paddle.paddleWidth + yuan.r)) {
           yuan.vy = -yuan.vy
         } else {
-            window.location.href="https://lljjtt.github.io/#/homepage"
+            window.location.href="https://persional.lijinghuan.com/#/homepage"
         }
       }
       if (rightPressed && paddle.paddleX < canvas.width - paddle.paddleWidth) {

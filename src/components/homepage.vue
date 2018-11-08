@@ -7,11 +7,12 @@
   		</div>
   		<div class="intro">
   			<p class="p0">Welcome to Li Jing's personal website</p>
-  			<p class="p1">欢迎走进我的世界<br></p>
+  			<p class="p1">{{date}}<br></p>
   		</div>
+  		<embed id="time" wmode="transparent" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf" quality="high" bgcolor="#ffffff" width="160" height="70"  align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
+
   		<Trust></Trust>
   		<Message></Message>
-
 		<!-- 测试axios -->
   		<!-- <button v-on:click="httpRequest">click</button> -->
   	</div>
@@ -20,6 +21,11 @@
 import Trust from './trust.vue'
 import Message from './message.vue'
 export default {
+	data(){
+		return{
+			date:'2018-11-08'
+		}
+	},
 	name:'homepage',
 	components: {
 		Trust,Message
@@ -42,6 +48,19 @@ export default {
 			aDiv[index].style.opacity=1;
 			aDiv[index].className += ' focus';
 		},4000);
+	},
+	methods:{
+		getDate(){
+			var date = new Date()
+			var year = date.getFullYear();
+			var month = date.getMonth() + 1;
+			var day = date.getDate();
+			this.date =  year + "`" + month + "`" + day;
+			console.log(this.date)
+		}
+	},
+	created(){
+		this.getDate()
 	}
 }
 </script>
@@ -124,6 +143,7 @@ export default {
 	}
 	@media(max-width:600px){
 		#homepage{
+			position: relative;
 			.banner{
 				.focus{
 					opacity:1 !important;
@@ -153,6 +173,17 @@ export default {
 				}
 			}
 		}
+	}
+	#time{
+		z-index: 999999;
+		position: absolute;
+		position:absolute;
+		left:50%;
+		margin-left:-80px;
+		margin-top:35px;
+		background:#35cc7c;
+		border-radius: 10px;
+		overflow: hidden;
 	}
 </style>
 

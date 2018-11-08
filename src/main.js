@@ -16,7 +16,6 @@ Vue.use(ElementUI)
 // 加载jquery
 import $ from 'jquery'
 window.$ = $;
-
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
