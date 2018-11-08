@@ -10,6 +10,7 @@ import Cube from '@/components/cube'
 import Login from '@/components/login'
 import LeaveInfo from '@/components/leave_info'
 import TypingGame from '@/components/typing_game'
+import MouseFllow from '@/components/mouse_fllow'
 
 // @相当于项目的根路径
 Vue.use(Router)
@@ -73,6 +74,11 @@ const r = new Router({
       path:'/typing_game',
       name:'typing_game',
       component:TypingGame,
+    },
+    {
+      path:'/mouse_fllow',
+      name:'mouse_fllow',
+      component:MouseFllow,
     }
   ]
 })
@@ -89,5 +95,5 @@ r.beforeEach((to,from,next) =>{
     else { 
       next() 
     }
-  } 
+  }
 })

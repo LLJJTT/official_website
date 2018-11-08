@@ -9,8 +9,7 @@
   			<p class="p0">Welcome to Li Jing's personal website</p>
   			<p class="p1">{{date}}<br></p>
   		</div>
-  		<embed id="time" wmode="transparent" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf" quality="high" bgcolor="#ffffff" width="160" height="70"  align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
-
+  		<embed id="time" wmode="transparent" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf" quality="high" bgcolor="#ffffff" width="400" height="300"  align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
   		<Trust></Trust>
   		<Message></Message>
 		<!-- 测试axios -->
@@ -56,7 +55,6 @@ export default {
 			var month = date.getMonth() + 1;
 			var day = date.getDate();
 			this.date =  year + "`" + month + "`" + day;
-			console.log(this.date)
 		}
 	},
 	created(){
@@ -91,22 +89,30 @@ export default {
 			    margin-left: -50%;
 			    width: 100%;
 			    height: 100%;
-				background-size: cover;
+					background-size: cover;
 			    background-repeat: no-repeat;
-			    background-position: 100% 100%;
 			}
 			.item0{
-				background-image: url('../assets/banner0.jpg');
+				background: url('../assets/ba1.jpg');
+				background-size: cover;
+		    background-repeat: no-repeat;
+				// background-image: url('../assets/banner0.jpg');
 			}
 			.item1{
-				background-image: url('../assets/banner1.jpg');
+				background-image: url('../assets/ba2.jpg');
+				background-size: cover;
+			    background-repeat: no-repeat;
+				// background-image: url('../assets/banner1.jpg');
 			}
 			.item2{
-				background-image: url('../assets/banner2.jpg');
+				background-size: cover;
+			    background-repeat: no-repeat;
+				background-image: url('../assets/ba3.png');
+
 			}
 			.focus{
 				opacity:1 !important;
-				animation: bigger 4s;
+				animation: bigger 5s;
 				animation-fill-mode: forwards;
 				animation-timing-function:linear;
 			}
@@ -116,8 +122,8 @@ export default {
 					height: 100%;
 				}
 				to{
-					width: 100%;
-					height: 106%;
+					width: 120%;
+					height: 130%;
 
 				}
 			}
@@ -179,9 +185,9 @@ export default {
 		position: absolute;
 		position:absolute;
 		left:50%;
-		margin-left:-80px;
-		margin-top:35px;
-		background:#35cc7c;
+		margin-left:-200px;
+		margin-top:-75px;
+		// background:#35cc7c;
 		border-radius: 10px;
 		overflow: hidden;
 	}

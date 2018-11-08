@@ -8,7 +8,7 @@
 			<div class="works">
 				我<br>的<br>作<br>品<br>	
 			</div>
-			<el-row class="row_div" style="display: none">
+			<el-row class="row_div" style="display: block">
 			  <el-col :span="8">
 			  	<div class="wrapper">
 			  		<ul>
@@ -18,9 +18,25 @@
 			  			<li>
 			  				打字游戏
 			  			</li>
-			  			<li>
+			  			<li id="aaaaa">
 			  				网页版的打字小游戏<br><br>
 			  				vue2.x,es6
+			  			</li>
+			  		</ul>
+			  	</div>
+			  </el-col>
+			  <el-col :span="8">
+			  	<div class="wrapper">
+			  		<ul>
+			  			<li @click="goMouseFllow">
+			  				<img src="static/mouse.png" alt="">
+			  			</li>
+			  			<li>
+			  				新增鼠标跟随特效
+			  			</li>
+			  			<li>
+			  				鼠标跟随特效<br><br>
+			  				vue2.x,es6,canvas
 			  			</li>
 			  		</ul>
 			  	</div>
@@ -277,6 +293,9 @@ import axios from 'axios';
 			},
 			goTypingGame(){
 				this.$router.push({path:'/typing_game'});
+			},
+			goMouseFllow(){
+				this.$router.push({path:'/mouse_fllow'});
 			}
 		},
 		// created:function(){
@@ -287,11 +306,25 @@ import axios from 'axios';
 	}
 </script>
 <style lang="scss" scoped>
+@keyframes bigger{
+				0%{
+					transform:rotateZ(0deg);
+				}
+				33%{
+					transform:rotateZ(6deg);
+				}
+				66%{
+					transform:rotateZ(-6deg);
+				}
+				100%{
+					transform:rotateZ(0deg);
+				}
+			}
 	#trust{
 		// position: relative;
 		// margin-top: 13%;
 		color: #fff;
-		background:rgba(0,0,0,0.9);
+		background:rgba(0,0,0,.7);
 		padding-bottom:100px;
 		.title{
 			padding:240px 0 10px 0;
@@ -301,7 +334,7 @@ import axios from 'axios';
 				font-size:38px;
 			}
 			p:last-child{
-				color:#aaaaaa;
+				color:#bd5757;
 				font-size:18px;
 				margin-top:8px;
 			}
@@ -334,10 +367,13 @@ import axios from 'axios';
 								transition:1.6s;
 								height:150px;
 								width:320px; 
+								border-radius: 6px;
 							}
 							img:hover{
 								cursor:pointer;
-								transform:scale(1.3);
+								animation: bigger 1.6s;
+								animation-fill-mode: forwards;
+								animation-timing-function:linear;
 							}
 						}
 						li:nth-child(2){
@@ -346,7 +382,7 @@ import axios from 'axios';
 							padding:10px 0;
 						}
 						li:last-child{
-							color:#aaaaaa;
+							color:#f5f0f0;
 							font-size:12px;
 						}
 						li:last-child:hover{
