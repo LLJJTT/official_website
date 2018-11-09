@@ -69,8 +69,8 @@ export default {
 		 
 		l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
 		 
-		t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
-		 
+		t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba(205,38,38,1)",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+		 // rgba("+d.c+","+(t+.2)+")
 		}),
 		 
 		x(i)

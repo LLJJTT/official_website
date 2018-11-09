@@ -1,7 +1,7 @@
 <template>
 	<div id="trust">
 		<div class="title">
-			<p>所谓的成长,就是能越来越接受自己本来的样子</p>
+			<p><i v-for="item in textArr">{{item}}</i></p>
 			<p>The So-called Growth Is To Be Able To Accept Myself More And More</p>
 		</div>
 		<div class="introduce">
@@ -18,7 +18,7 @@
 			  			<li>
 			  				打字游戏
 			  			</li>
-			  			<li id="aaaaa">
+			  			<li>
 			  				网页版的打字小游戏<br><br>
 			  				vue2.x,es6
 			  			</li>
@@ -36,6 +36,22 @@
 			  			</li>
 			  			<li>
 			  				鼠标跟随特效<br><br>
+			  				vue2.x,es6,canvas
+			  			</li>
+			  		</ul>
+			  	</div>
+			  </el-col>
+			  <el-col :span="8">
+			  	<div class="wrapper">
+			  		<ul>
+			  			<li @click="goFive">
+			  				<img src="static/five.jpeg" alt="">
+			  			</li>
+			  			<li>
+			  				五子棋(测试版)
+			  			</li>
+			  			<li>
+			  				<br>五子棋算法可能含缺陷<br>
 			  				vue2.x,es6,canvas
 			  			</li>
 			  		</ul>
@@ -148,7 +164,11 @@
 			</el-row>
 
 
-			<el-row class="row_div">
+			
+			<div>
+			    <a-collapse  @change="changeActivekey">
+			      <a-collapse-panel header="获取更多" key="1">
+			        <el-row class="row_div">
 			  <el-col :span="8">
 			  	<div class="wrapper">
 			  		<ul>
@@ -258,18 +278,21 @@
 			  	</div>
 			  </el-col>
 			</el-row>
-			
+			      </a-collapse-panel>
+			    </a-collapse>
+			  </div>
 		</div>
 		
 	</div>
 </template>
 
 <script>
+	import { Loading } from 'element-ui';
 import axios from 'axios';
 	export default{
 		data(){
 			return{
-				// url:'http://localhost/index.php'
+				textArr:[],
 			}
 		},
 		methods:{
@@ -296,13 +319,31 @@ import axios from 'axios';
 			},
 			goMouseFllow(){
 				this.$router.push({path:'/mouse_fllow'});
-			}
+			},
+			goFive(){
+				this.$router.push({path:'/five_game'});
+			},
+			changeActivekey (key) {
+				if (key[0]==1) {
+					const _this = this
+					var loadingInstance = Loading.service({ 
+							fullscreen: true,
+							background:'rgba(0, 0, 0, 0.8)',
+							text:'数据加载中！请等待！' 
+						});
+					setTimeout(res =>{
+						_this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
+						  loadingInstance.close();
+						});
+					},2000)
+				}
+				
+	      	}
 		},
-		// created:function(){
-		// 	axios.post(this.url).then(function(data){
-		// 		console.log(data.data[0].username);
-		// 	})
-		// }
+		created:function(){
+			var str ='所,谓,的,成,长, ,就,是,能,越,来,越,接,受,自,己,本,来,的,样,子' 
+			this.textArr = str.split(',');
+		}
 	}
 </script>
 <style lang="scss" scoped>
@@ -311,10 +352,10 @@ import axios from 'axios';
 					transform:rotateZ(0deg);
 				}
 				33%{
-					transform:rotateZ(6deg);
+					transform:rotateZ(2deg);
 				}
 				66%{
-					transform:rotateZ(-6deg);
+					transform:rotateZ(-2deg);
 				}
 				100%{
 					transform:rotateZ(0deg);
@@ -324,7 +365,7 @@ import axios from 'axios';
 		// position: relative;
 		// margin-top: 13%;
 		color: #fff;
-		background:rgba(0,0,0,.7);
+		background:rgba(0,0,0,.8);
 		padding-bottom:100px;
 		.title{
 			padding:240px 0 10px 0;
@@ -332,6 +373,10 @@ import axios from 'axios';
 			p:first-child{
 				color:#fff;
 				font-size:38px;
+			}
+			p:first-child i:hover{
+				color:#ffba1f;
+				transition: .3s;
 			}
 			p:last-child{
 				color:#bd5757;
@@ -354,7 +399,7 @@ import axios from 'axios';
 			}
 			.row_div:last-child{
 			    padding-bottom: 50px;
-			    border-bottom: 1px solid #f5f5f5;
+			    // border-bottom: 1px solid #f5f5f5;
 			}
 			.row_div{
 				width:90%;
@@ -362,7 +407,7 @@ import axios from 'axios';
 				.wrapper{
 						font-weight:bold;
 						li:first-child{
-							overflow: hidden;
+							// overflow: hidden;
 							img{
 								transition:1.6s;
 								height:150px;
@@ -381,13 +426,22 @@ import axios from 'axios';
 							font-size:18px;
 							padding:10px 0;
 						}
+						li:nth-child(2):hover{
+							font-size:24px;
+							transition:.8s;
+							color:#69e29b;
+						}
 						li:last-child{
 							color:#f5f0f0;
 							font-size:12px;
+							display: inline-block;
+							border-radius: 6px;
 						}
 						li:last-child:hover{
-							transition:.8s;
-							text-decoration:underline;
+							transition:.4s;
+							padding: 5px;
+							color:#ffba1f;
+							border: 2px solid #958c8c;
 						}			
 				}
 			}
@@ -433,6 +487,12 @@ import axios from 'axios';
 		color: red;
 		font-size: 20px;
 	}
+	.ant-collapse{
+		 background-color: rgba(51, 51, 51,1) !important;
+		 border-right: none;
+		 border-left: none;
+	}
+	
 </style>
 
 

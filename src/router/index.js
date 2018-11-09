@@ -11,6 +11,7 @@ import Login from '@/components/login'
 import LeaveInfo from '@/components/leave_info'
 import TypingGame from '@/components/typing_game'
 import MouseFllow from '@/components/mouse_fllow'
+import FiveGame from '@/components/five_game'
 
 // @相当于项目的根路径
 Vue.use(Router)
@@ -79,6 +80,11 @@ const r = new Router({
       path:'/mouse_fllow',
       name:'mouse_fllow',
       component:MouseFllow,
+    },
+    {
+      path:'/five_game',
+      name:'five_game',
+      component:FiveGame,
     }
   ]
 })

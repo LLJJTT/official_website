@@ -40,7 +40,6 @@ export default {
   padding: 0;
   text-decoration: none;
   list-style: none;
-  height: 100%;
   overflow-x:hidden;
   position: relative;
 }

@@ -1,12 +1,17 @@
 <template>
   	<div id="homepage">
+  		<a-back-top>
+  			<div class="ant-back-top-icon"></div>
+	    </a-back-top>
   		<div class="banner">
   			<div class="item item0 focus"></div>
   			<div class="item item1"></div>
   			<div class="item item2"></div>
   		</div>
   		<div class="intro">
-  			<p class="p0">Welcome to Li Jing's personal website</p>
+  			<p class="p0">
+  				<i v-for="item in textArr">{{item}}</i>
+  			</p>
   			<p class="p1">{{date}}<br></p>
   		</div>
   		<embed id="time" wmode="transparent" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf" quality="high" bgcolor="#ffffff" width="400" height="300"  align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
@@ -19,10 +24,12 @@
 <script>
 import Trust from './trust.vue'
 import Message from './message.vue'
+
 export default {
 	data(){
 		return{
-			date:'2018-11-08'
+			date:'2018-11-08',
+			textArr:[]
 		}
 	},
 	name:'homepage',
@@ -59,6 +66,8 @@ export default {
 	},
 	created(){
 		this.getDate()
+		var str = 'W,e,l,c,o,m,e, ,t,o, ,L,i, ,J,i,n,g,’,s, ,p,e,r,s,i,o,n,a,l, ,w,e,b,s,i,t,e';
+		this.textArr = str.split(',');
 	}
 }
 </script>
@@ -138,6 +147,13 @@ export default {
 			    color: #ffba1f;
 			    text-align: center;
 			    font-weight: 400;
+			    position: relative;
+			}
+			.p0 i{
+			}
+			.p0 i:hover{
+				transition: .2s;
+				color: #fff;
 			}
 			.p1{
 				font-size: 32px;
@@ -187,9 +203,13 @@ export default {
 		left:50%;
 		margin-left:-200px;
 		margin-top:-75px;
-		// background:#35cc7c;
 		border-radius: 10px;
 		overflow: hidden;
+	}
+	.ant-back-top{
+		right: 40px !important;
+		border-radius: 40px;
+		background:#1088e9;;
 	}
 </style>
 
