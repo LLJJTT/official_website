@@ -8,6 +8,24 @@
 			<div class="works">
 				我<br>的<br>作<br>品<br>	
 			</div>
+			<!-- <el-row class="row_div" style="display: block">
+			  <el-col :span="8">
+			  	<div class="wrapper">
+			  		<ul>
+			  			<li @click="goHotDog">
+			  				<img src="static/dazi.jpg" alt="">
+			  			</li>
+			  			<li>
+			  				王校长大战🌭
+			  			</li>
+			  			<li>
+			  				听说王思聪很喜欢吃热狗？<br><br>
+			  				canvas,es6
+			  			</li>
+			  		</ul>
+			  	</div>
+			  </el-col>
+			</el-row> -->
 			<el-row class="row_div" style="display: block">
 			  <el-col :span="8">
 			  	<div class="wrapper">
@@ -162,8 +180,6 @@
 			  	</div>
 			  </el-col>
 			</el-row>
-
-
 			
 			<div>
 			    <a-collapse  @change="changeActivekey">
@@ -322,6 +338,9 @@ import axios from 'axios';
 			},
 			goFive(){
 				this.$router.push({path:'/five_game'});
+			},
+			goHotDog(){
+				this.$router.push({path:'/wxz_hotdog'});
 			},
 			changeActivekey (key) {
 				if (key[0]==1) {

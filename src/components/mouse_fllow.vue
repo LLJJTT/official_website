@@ -41,7 +41,7 @@ export default {
 		 
 		return{
 		 
-		l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",1),c:n(i,"color","#f63300"),n:n(i,"count",120)
+		l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",1),c:n(i,"color","#f63300"),n:n(i,"count",30)
 		 
 		}
 		 

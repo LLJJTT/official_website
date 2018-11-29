@@ -48,7 +48,7 @@
 					_this.oy-=3
 					_this.innerStyle = 'width: 120px; height: 120px; transform: translateX(-50%) scale3d(0.8, 0.8, 0.8) rotateX('+_this.ix+'deg)  rotateY('+_this.iy+'deg) rotateZ('+_this.iz+'deg)'
 					_this.outerStyle = 'width: 120px; height: 120px; transform: translateX(-50%) scale3d(1.5, 1.5, 1.5) rotateX('+_this.ox+'deg)  rotateY('+_this.oy+'deg) rotateZ('+_this.oz+'deg)'
-				},30)
+				},100)
 			}
 		},
 		created(){
@@ -113,7 +113,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 .cube__inner {
     position: absolute;
     top: 30px;
-    right: -5px;
+    right: -80px;
 }
 .oface{
 	 line-height: 120px;

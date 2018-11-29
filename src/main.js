@@ -14,10 +14,14 @@ import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
 
 // 引入 ant-design-vue
-import { BackTop,Collapse } from 'ant-design-vue'
+import { BackTop,Collapse,List,Avatar } from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
 Vue.use(BackTop)
 Vue.use(Collapse)
+Vue.use(List)
+Vue.use(Avatar)
+
+
 
 // 加载jquery
 import $ from 'jquery'
