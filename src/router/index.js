@@ -10,7 +10,6 @@ import Cube from '@/components/cube'
 import Login from '@/components/login'
 import LeaveInfo from '@/components/leave_info'
 import TypingGame from '@/components/typing_game'
-import MouseFllow from '@/components/mouse_fllow'
 import FiveGame from '@/components/five_game'
 import HotDog from '@/components/wxz_hotdog'
 
@@ -76,11 +75,6 @@ const r = new Router({
       path:'/typing_game',
       name:'typing_game',
       component:TypingGame,
-    },
-    {
-      path:'/mouse_fllow',
-      name:'mouse_fllow',
-      component:MouseFllow,
     },
     {
       path:'/five_game',

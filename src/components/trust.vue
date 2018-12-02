@@ -46,22 +46,6 @@
 			  <el-col :span="8">
 			  	<div class="wrapper">
 			  		<ul>
-			  			<li @click="goMouseFllow">
-			  				<img src="static/mouse.png" alt="">
-			  			</li>
-			  			<li>
-			  				新增鼠标跟随特效
-			  			</li>
-			  			<li>
-			  				鼠标跟随特效<br><br>
-			  				vue2.x,es6,canvas
-			  			</li>
-			  		</ul>
-			  	</div>
-			  </el-col>
-			  <el-col :span="8">
-			  	<div class="wrapper">
-			  		<ul>
 			  			<li @click="goFive">
 			  				<img src="static/five.jpeg" alt="">
 			  			</li>
@@ -333,9 +317,6 @@ import axios from 'axios';
 			goTypingGame(){
 				this.$router.push({path:'/typing_game'});
 			},
-			goMouseFllow(){
-				this.$router.push({path:'/mouse_fllow'});
-			},
 			goFive(){
 				this.$router.push({path:'/five_game'});
 			},
@@ -446,7 +427,6 @@ import axios from 'axios';
 							padding:10px 0;
 						}
 						li:nth-child(2):hover{
-							font-size:24px;
 							transition:.8s;
 							color:#69e29b;
 						}
@@ -458,9 +438,7 @@ import axios from 'axios';
 						}
 						li:last-child:hover{
 							transition:.4s;
-							padding: 5px;
 							color:#ffba1f;
-							border: 2px solid #958c8c;
 						}			
 				}
 			}

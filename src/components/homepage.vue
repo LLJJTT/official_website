@@ -58,7 +58,7 @@ export default {
 			textArr:[],
 			looks:'加载中',
 			url:'https://persional.lijinghuan.com/back_end/looks.php',
-			newstop:'https://www.apiopen.top/satinGodApi?type=1&page=3',
+			newstop:'https://www.apiopen.top/satinGodApi?type=1&page=4',
 			data1:[],
 			data:[],
 			dialogVisible: false,
