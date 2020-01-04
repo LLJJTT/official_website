@@ -1,7 +1,7 @@
 <template>
 	<div id="footer">
 		<div id="intro">
-			<span><img class="beian" src="static/beian.png" alt="">&nbsp;&nbsp;黑ICP备&nbsp;18006539号&nbsp;&copy;&nbsp;2017&nbsp;个人网站&nbsp;&nbsp;李井欢所有</span>
+			<span><img class="beian" src="static/beian.png" alt="">&nbsp;&nbsp;黑ICP备&nbsp;18006539号&nbsp;&copy;&nbsp;2017&nbsp;个人网站&nbsp;&nbsp;天道-棋鬼王所有</span>
 		</div>
 		<div>
 		</div>

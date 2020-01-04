@@ -4,7 +4,7 @@
   			<div class="ant-back-top-icon"></div>
 	    </a-back-top>
   		<div class="banner">
-  			<h1 class="look">访问量:<i>{{looks}}</i></h1>
+  			<!-- <h1 class="look">访问量:<i>{{looks}}</i></h1> -->
   			<div class="item item0 focus"></div>
   			<div class="item item1"></div>
   			<div class="item item2"></div>
@@ -30,7 +30,7 @@
   			</p>
   			<p class="p1">{{date}}<br></p>
   		</div>
-  		<embed id="time" wmode="transparent" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf" quality="high" bgcolor="#ffffff" width="400" height="300"  align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
+  		<!-- <embed id="time" wmode="transparent" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf" quality="high" bgcolor="#ffffff" width="400" height="300"  align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"> -->
   		<Trust></Trust>
   		<Message></Message>
   		<el-dialog
@@ -94,72 +94,73 @@ export default {
 			this.date =  year + "`" + month + "`" + day;
 		},
 		// 获取搞笑段子
-		getNews(){
-			axios({
-				url:this.newstop,
-				method:'GET',
-			})
-			.then(res =>{
-				res.data.data.map((item,index) =>{
-					if (item.type=='image') {
-						this.data1.push(item)
-					}
-				})
-				this.data1.map((item,index) =>{
-					if (index<5) {
-						this.data.push(item)
-					}
-				})
-			})
-			.catch(res =>{
-				console.log(res)
-			})
-		},
+		// getNews(){
+		// 	axios({
+		// 		url:this.newstop,
+		// 		method:'GET',
+		// 	})
+		// 	.then(res =>{
+		// 		res.data.data.map((item,index) =>{
+		// 			if (item.type=='image') {
+		// 				this.data1.push(item)
+		// 			}
+		// 		})
+		// 		this.data1.map((item,index) =>{
+		// 			if (index<5) {
+		// 				this.data.push(item)
+		// 			}
+		// 		})
+		// 	})
+		// 	.catch(res =>{
+		// 		console.log(res)
+		// 	})
+		// },
 		playVideo(image,index){
 			this.image_src = image
 			this.dialogVisible = true
 		}
 	},
 	created(){
-		this.getNews()
-		var loadingInstance = Loading.service({ 
-			fullscreen: true,
-			background:'rgba(0, 0, 0, 0.8)',
-			text:'获取资源中！！！！！' 
-		});
+		// this.getNews()
+		// var loadingInstance = Loading.service({ 
+		// 	fullscreen: true,
+		// 	background:'rgba(0, 0, 0, 0.8)',
+		// 	text:'获取资源中！！！！！' 
+		// });
+	 //  	loadingInstance.close();
 		this.getDate()
 		// var str = 'W,e,l,c,o,m,e, ,t,o, ,L,i, ,J,i,n,g,’,s, ,p,e,r,s,i,o,n,a,l, ,w,e,b,s,i,t,e';
-		var str = '精,彩,段,子'
+		var str = 'V,U,E,2,,.,0'
 		this.textArr = str.split(',');
 		var formData = new FormData()
 		formData.append("recode",'1')
-		axios({
-			url:this.url,
-			method:'post',
-			data:formData
-		})
-		.then(res =>{
-			if (res.data.status==200) {
-				this.looks = res.data.looks.look_number
-				var _this = this
-				setTimeout(res =>{
-						_this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
-						  loadingInstance.close();
-						});
-				},2000)
-			}
-			else{
-				var _this = this
-				setTimeout(res =>{
-					_this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
-					  loadingInstance.close();
-					});
-				},5000)
-			}
-		})
-		.catch(res =>{
-			console.log(res)
-		})
+		// axios({
+		// 	url:this.url,
+		// 	method:'post',
+		// 	data:formData
+		// })
+		// .then(res =>{
+		// 	if (res.data.status==200) {
+		// 		this.looks = res.data.looks.look_number
+		// 		var _this = this
+		// 		setTimeout(res =>{
+		// 				_this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
+		// 				  loadingInstance.close();
+		// 				});
+		// 		},2000)
+		// 	}
+		// 	else{
+		// 		var _this = this
+		// 		setTimeout(res =>{
+		// 			_this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
+		// 			  loadingInstance.close();
+		// 			});
+		// 		},5000)
+		// 	}
+		// })
+		// .catch(res =>{
+		// 	console.log(res)
+		// })
 		
 	}
 }

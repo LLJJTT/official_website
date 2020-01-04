@@ -20,7 +20,7 @@
 						项目合作QQ:1072090332
 					</li>
 					<li>
-						电话:18745708406
+						<!-- 电话:18745708406 -->
 					</li>
 					<li>
 						工作时间 8:30 ~ 17:30<br>工作日（周一至周五）
@@ -105,143 +105,158 @@
 					snow2.style.opacity="1";
 				}
 			},
-			submitMessage:function(){
-				if(this.nameVal!=''&&this.numVal!=''&&this.textVal!=''){
-					var loadingInstance = Loading.service({ 
-						fullscreen: true,
-						background:'rgba(0, 0, 0, 0.8)' });
-					var formData = new FormData()
-					formData.append("nickname",this.nameVal)
-					formData.append("phone",this.numVal)
-					formData.append("textval",this.textVal)
-					axios({
-						url:this.url,
-						method:'post',
-						data:formData
-					})
-					.then(res =>{
-						if (res.data.code==200) {
-							var _this = this
-							this.nameVal = ''
-							this.numVal = ''
-							this.textVal = ''
-							this.disabled = true;
-							const oBtn  = document.getElementsByClassName('btn')[0];
-							oBtn.style.background = '#aaa';
-							setTimeout(res =>{
-								_this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
-								  loadingInstance.close();
-								});
-								_this.$message({
-									message:'您留言成功了，我会尽快联系你！',
-									type:'success',
-									duration:5000
-								})
-							},2000)
-						}
-						else{
-							var _this = this
-							setTimeout(res =>{
-								_this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
-								  loadingInstance.close();
-								});
-								_this.$message({
-									message:'您留言失败！！！！请重新留言！',
-									type:'error',
-									duration:5000
-								})
-							},2000)
-						}
-					})
-					.catch(res =>{
-						console.log(res)
-					})
-				}
+			submitMessage(){
+				var _this = this
+				_this.$message({
+					message:'您留言成功了，我会尽快联系你！',
+					type:'success',
+					duration:5000
+				})
+				this.nameVal = ''
+				this.numVal = ''
+				this.textVal = ''
+				this.disabled = true;
+				const oBtn  = document.getElementsByClassName('btn')[0];
+				oBtn.style.background = '#aaa';
 			}
+			// submitMessage:function(){
+				
+			// 	if(this.nameVal!=''&&this.numVal!=''&&this.textVal!=''){
+			// 		var loadingInstance = Loading.service({ 
+			// 			fullscreen: true,
+			// 			background:'rgba(0, 0, 0, 0.8)' });
+			// 		var formData = new FormData()
+			// 		formData.append("nickname",this.nameVal)
+			// 		formData.append("phone",this.numVal)
+			// 		formData.append("textval",this.textVal)
+			// 		axios({
+			// 			url:this.url,
+			// 			method:'post',
+			// 			data:formData
+			// 		})
+			// 		.then(res =>{
+			// 			if (res.data.code==200) {
+			// 				var _this = this
+			// 				this.nameVal = ''
+			// 				this.numVal = ''
+			// 				this.textVal = ''
+			// 				this.disabled = true;
+			// 				const oBtn  = document.getElementsByClassName('btn')[0];
+			// 				oBtn.style.background = '#aaa';
+			// 				setTimeout(res =>{
+			// 					_this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
+			// 					  loadingInstance.close();
+			// 					});
+			// 					_this.$message({
+			// 						message:'您留言成功了，我会尽快联系你！',
+			// 						type:'success',
+			// 						duration:5000
+			// 					})
+			// 				},2000)
+			// 			}
+			// 			else{
+			// 				var _this = this
+			// 				setTimeout(res =>{
+			// 					_this.$nextTick(() => { // 以服务的方式调用的 Loading 需要异步关闭
+			// 					  loadingInstance.close();
+			// 					});
+			// 					_this.$message({
+			// 						message:'您留言失败！！！！请重新留言！',
+			// 						type:'error',
+			// 						duration:5000
+			// 					})
+			// 				},2000)
+			// 			}
+			// 		})
+			// 		.catch(res =>{
+			// 			console.log(res)
+			// 		})
+			// 	}
+			// }
 		}
 	}
 </script>
 
 <style scoped lang="scss">
-	#message{
-		background-image: url('../assets/liuyan.jpg');
-		background-repeat:no-repeat;
-		background-size:cover;
-		p{
-				position:absolute;
-				margin-top: 120px;
-				font-size:24px;
-				margin-left: 20px;
-				color:#ed8e46;
-		}
-		.m_left{
-			padding-top:40px;
-			width:40%;
-			float:left;
-			.wrapper{
-				width:90%;
-				margin: 0 auto;
-				ul{
-					float:left;
+#message{
+	background-image: url('../assets/liuyan.jpg');
+	background-repeat:no-repeat;
+	background-size:cover;
+	p{
+		position:absolute;
+		margin-top: 120px;
+		font-size:24px;
+		margin-left: 20px;
+		color:#ed8e46;
+	}
+	.m_left{
+		padding-top:40px;
+		width:40%;
+		float:left;
+		.wrapper{
+			width:90%;
+			margin: 0 auto;
+			ul{
+				float:left;
+			}
+			.ul_img img{
+				width:30px;
+				height:30px;
+				padding:80px 0 0 0 ;
+				margin-left: 100px;
+			}
+			.ul_intro{
+				padding:50px 0 50px 0;
+				margin-left:50px;
+				li:first-child{
+					font-size:19px;
 				}
-				.ul_img img{
-					width:30px;
-					height:30px;
-					padding:80px 0 0 0 ;
-					margin-left: 100px;
-				}
-				.ul_intro{
-					padding:50px 0 50px 0;
-					margin-left:50px;
-					li:first-child{
-						font-size:19px;
-					}
-					li{
-						line-height:40px;
-						text-align:left;
-						color:#b8cbe2;
-						font-size:16px;
-						font-weight:bold;
-					}
+				li{
+					line-height:40px;
+					text-align:left;
+					color:#b8cbe2;
+					font-size:16px;
+					font-weight:bold;
 				}
 			}
-			
 		}
-		.m_right{
-			padding-top:40px;
-			width:60%;
-			float:left;
-			.wrapper1{
-				padding:50px 0 100px 0;
-				width:90%;
-				margin: 0 auto;
-				color:#fff;
-				font-weight:bold;
-				font-size:16px;
-				.r_ul1{
-					li{
-						font-size:16px;
-						input{
-							display:inline-block;
-							text-indent:10px;
-							font-weight:bold;
-							box-shadow:none;
-							border:none;
-							height:30px;
-							background: #aaa;
-							color:#d33838;
-							font-size:20px;
-							text-align:center;
-							border-radius:2px;
+		
+	}
+	.m_right{
+		padding-top:40px;
+		width:60%;
+		float:left;
+		.wrapper1{
+			padding:50px 0 100px 0;
+			width:90%;
+			margin: 0 auto;
+			color:#fff;
+			font-weight:bold;
+			font-size:16px;
+			.r_ul1{
+				li{
+					font-size:16px;
+					input{
+						display:inline-block;
+						text-indent:10px;
+						font-weight:bold;
+						box-shadow:none;
+						border:none;
+						height:30px;
+						background: #aaa;
+						color:#d33838;
+						font-size:20px;
+						text-align:center;
+						border-radius:2px;
 
-						}
-						i{
-							color:red;
-						}
 					}
-					li:first-child{
-						float:left;
-						margin-left:50px;
+					i{
+						color:red;
+					}
+				}
+				li:first-child{
+					float:left;
+					margin-left:50px;
 						// margin-right:100px;
 					}
 
@@ -378,7 +393,7 @@
 								right:100px;
 								line-height:40px;
 							}
-								
+							
 						}
 						.snow1{
 							color:red;

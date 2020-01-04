@@ -6,7 +6,8 @@
 		</div>
 		<div class="introduce">
 			<div class="works">
-				我<br>的<br>作<br>品<br>	
+				我<br>的<br>作<br>品<br><br><br><br><br>
+				游<br>戏<br>代<br>码<br>已<br>开<br>源	
 			</div>
 			<!-- <el-row class="row_div" style="display: block">
 			  <el-col :span="8">
@@ -165,7 +166,7 @@
 			  </el-col>
 			</el-row>
 			
-			<div>
+			<!-- <div>
 			    <a-collapse  @change="changeActivekey">
 			      <a-collapse-panel header="获取更多" key="1">
 			        <el-row class="row_div">
@@ -280,7 +281,7 @@
 			</el-row>
 			      </a-collapse-panel>
 			    </a-collapse>
-			  </div>
+			  </div> -->
 		</div>
 		
 	</div>

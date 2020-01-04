@@ -2,59 +2,61 @@
     <div class="box">
         <div class="wrapper">
             <ul class="puzzle-wrap">
-                 <transition-group name="listArr" tag="p" style="">
+               <transition-group name="listArr" tag="p" style="">
                   <li 
-                      :key="puzzle"
-                      :class="{'puzzle': true, 'puzzle-empty': !puzzle}" 
-                      v-for="(puzzle,index) in puzzles" 
-                      v-text="puzzle"
-                      @click="moveFn(index)"
+                  :key="puzzle"
+                  :class="{'puzzle': true, 'puzzle-empty': !puzzle}" 
+                  v-for="(puzzle,index) in puzzles" 
+                  v-text="puzzle"
+                  @click="moveFn(index)"
                   ></li>
               </transition-group>
-            </ul>
-            <el-button class="restart" type="primary" @click="reStart">重新开始</el-button>
-        </div>
-        <div class="info">
-            <ul>
-                <li>步数</li>
-                <li id="step">{{stepVal}}</li>
-            </ul>
-            <ul style="margin-top:20px;">
-              <li>时间</li>
-              <li>{{stepTime}}&nbsp;s</li>
-            </ul>
-        </div>
-        <div class="intro">
-            <ul>
-                <li>游戏介绍</li>
-                <li>按照从小到大、从左到右的顺序依次排列</li>
-                <li>点击数字,移动位置</li>
-            </ul>
-        </div>
-        <el-dialog
-              title="恭喜你"
-              :visible.sync="centerDialogVisible"
-              width="70%"
-              center>
-              <div>
-                  <li> <span>你成功了！！一共用了<i style="color: red;font-size: 22px;">{{stepTime}}</i>  秒</span></li>
-                  <li><span>一共用了<i style="color: red;font-size: 22px;">{{stepVal}}</i>  步</span></li>
-              </div>
-              <span slot="footer" class="dialog-footer">
-                <el-button type="primary" @click="centerDialogVisible = false">确 定</el-button>
-              </span>
-            </el-dialog>
-    </div>
+          </ul>
+          <el-button class="restart" type="primary" @click="reStart">重新开始</el-button>
+      </div>
+      <div class="info">
+        <ul>
+            <li>步数</li>
+            <li id="step">{{stepVal}}</li>
+        </ul>
+        <ul style="margin-top:20px;">
+          <li>时间</li>
+          <li>{{stepTime}}&nbsp;s</li>
+      </ul>
+  </div>
+  <div class="intro">
+    <ul>
+        <li>游戏介绍</li>
+        <li>按照从小到大、从左到右的顺序依次排列</li>
+        <li>点击数字,移动位置</li>
+    </ul>
+</div>
+<el-dialog
+title="恭喜你"
+:visible.sync="centerDialogVisible"
+width="70%"
+center>
+<div>
+  <li> <span>你成功了！！一共用了<i style="color: red;font-size: 22px;">{{use_time}}</i>  秒</span></li>
+  <li><span>一共用了<i style="color: red;font-size: 22px;">{{use_step}}</i>  步</span></li>
+</div>
+<span slot="footer" class="dialog-footer">
+    <el-button type="primary" @click="centerDialogVisible = false">确 定</el-button>
+</span>
+</el-dialog>
+</div>
 </template>
 
 <script>
   var timer;
-export default {
+  export default {
     data () {
         return {
             puzzles: [],
             stepVal:0,
             stepTime:0,
+            use_step:0,
+            use_time:0,
             centerDialogVisible:false
         }
     },
@@ -77,7 +79,7 @@ export default {
             this.puzzles = puzzleArr
             this.puzzles.push('')
             var _this = this
-             timer = setInterval(function(){
+            timer = setInterval(function(){
                 _this.stepTime++
             },1000)
 
@@ -86,46 +88,49 @@ export default {
         moveFn:function (index) {
             // 获取点击位置及其上下左右的值
             let curNum = this.puzzles[index],
-                leftNum = this.puzzles[index - 1],
-                rightNum = this.puzzles[index + 1],
-                topNum = this.puzzles[index - 4],
-                bottomNum = this.puzzles[index + 4]
+            leftNum = this.puzzles[index - 1],
+            rightNum = this.puzzles[index + 1],
+            topNum = this.puzzles[index - 4],
+            bottomNum = this.puzzles[index + 4]
             // 与为空的位置交换数值
             if (leftNum === '' && index % 4) {//左''
                 this.$set(this.puzzles,index - 1, curNum)
-                this.$set(this.puzzles,index, '')
-                this.stepVal++
-            } 
+            this.$set(this.puzzles,index, '')
+            this.stepVal++
+        } 
             else if (rightNum === '' && 3 !== index % 4) {//右''
                 this.$set(this.puzzles,index + 1, curNum)
-                this.$set(this.puzzles,index, '')
-                this.stepVal++
-            } 
+            this.$set(this.puzzles,index, '')
+            this.stepVal++
+        } 
             else if (topNum === '') {//上''
                 this.$set(this.puzzles,index - 4, curNum)
-                this.$set(this.puzzles,index, '')
-                this.stepVal++
-            }
+            this.$set(this.puzzles,index, '')
+            this.stepVal++
+        }
             else if (bottomNum === '') {//下''
                 // console.log("下")
-                this.$set(this.puzzles,index + 4, curNum)
-                this.$set(this.puzzles,index, '')
-                this.stepVal++
-            }
-            else{
-                this.$message({
-                    message:"当前点击不能动",
-                    type:'warning'
-                })
-            }
-            this.passFn()
-        },
+            this.$set(this.puzzles,index + 4, curNum)
+            this.$set(this.puzzles,index, '')
+            this.stepVal++
+        }
+        else{
+            this.$message({
+                message:"当前点击不能动",
+                type:'warning'
+            })
+        }
+        this.passFn()
+    },
         // 校验是否过关
         passFn:function () {
             if (this.puzzles[15] === '') {
                 const newPuzzles = this.puzzles.slice(0, 15)
+                // console.log(newPuzzles)
                 const isPass = newPuzzles.every((e, i) => e === i + 1)
                 if (isPass) {
+                    this.use_step = this.stepVal
+                    this.use_time = this.stepTime  
                     clearInterval(timer)
                     this.centerDialogVisible =true  
                     this.stepVal = 0;
@@ -136,8 +141,10 @@ export default {
         },
         reStart:function(){
             clearInterval(timer)
-          this.render()
-          this.centerDialogVisible = false
+            this.render()
+            this.use_step = 0
+            this.use_time = 0
+            this.centerDialogVisible = false
         }
     },
     created:function(){
@@ -163,8 +170,8 @@ body {
     padding: 20px 0;
 }
 .puzzle-wrap {
-    width: 408px;
-    height: 408px;
+    width: 400px;
+    height: 400px;
     margin-bottom: 40px;
     padding: 0;
     background: #ccc;
@@ -236,9 +243,9 @@ body {
 .restart{
     margin-top: 100px;
 }
-  .listArr-move{
+.listArr-move{
     transition: transform .5s;
-  }
+}
 @media(max-width:830px){
     .box {
         width:100%;
